@@ -45,7 +45,7 @@
   --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   /* Fluid heading sizes — they scale with the viewport, no breakpoints.  */
-  --text-hero: clamp(2.75rem, 7vw, 5.5rem);
+  --text-hero: clamp(2.75rem, 7vw, 6.25rem);
   --text-hero--line-height: 0.98;
   --text-hero--letter-spacing: -0.035em;
 
@@ -70,7 +70,9 @@
      Section vertical rhythm and the max content width. Tighten or loosen
      the whole page by editing these two.                                 */
   --spacing-section: clamp(5rem, 10vw, 9rem);
-  --container-page: 76rem;
+  /* Wide enough that a 1920px monitor doesn't leave the page stranded in a
+     narrow strip, narrow enough that body copy stays readable.            */
+  --container-page: 82rem;
 }
 
 /* ==========================================================================

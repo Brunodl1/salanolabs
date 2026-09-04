@@ -80,7 +80,7 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
+              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
                 {hero.subhead} <span className="font-semibold text-text">{hero.kicker}</span>
               </p>
             </Reveal>
@@ -124,7 +124,7 @@ export default function Hero() {
         {/* Trusted-by logo strip. Scrolls horizontally on small screens. */}
         <Reveal delay={420} className="mt-16 sm:mt-20">
           <div className="-mx-6 overflow-x-auto px-6 [scrollbar-width:none] sm:mx-0 sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden">
-            <ul className="flex min-w-max items-center justify-start gap-10 opacity-55 sm:min-w-0 sm:gap-14">
+            <ul className="flex min-w-max items-center justify-start gap-10 opacity-55 sm:min-w-0 sm:justify-between sm:gap-8">
               {brandLogos.map((brand) => (
                 <li key={brand.name} className="shrink-0">
                   <img
