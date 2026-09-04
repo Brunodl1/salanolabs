@@ -55,31 +55,39 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="hidden lg:block">
-            <Button size="sm">{site.nav.cta}</Button>
-          </div>
+          {/* CTA + menu toggle. The CTA stays visible at every size so
+              booking is always one tap away, never behind the menu. */}
+          <div className="flex shrink-0 items-center gap-2.5 sm:gap-3">
+            <Button
+              size="sm"
+              onClick={() => setOpen(false)}
+              className="max-lg:gap-1.5 max-lg:px-4 max-lg:text-[0.8rem]"
+            >
+              {site.nav.cta}
+            </Button>
 
-          {/* Mobile toggle */}
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="flex h-10 w-10 items-center justify-center rounded-pill border border-line text-text lg:hidden"
-          >
-            <span className="relative block h-3 w-4">
-              <span
-                className={`absolute left-0 block h-[1.5px] w-full bg-current transition-all duration-300 ${
-                  open ? "top-1.5 rotate-45" : "top-0"
-                }`}
-              />
-              <span
-                className={`absolute left-0 block h-[1.5px] w-full bg-current transition-all duration-300 ${
-                  open ? "top-1.5 -rotate-45" : "top-3"
-                }`}
-              />
-            </span>
-          </button>
+            {/* Mobile toggle */}
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-label={open ? "Close menu" : "Open menu"}
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-pill border border-line text-text lg:hidden"
+            >
+              <span className="relative block h-3 w-4">
+                <span
+                  className={`absolute left-0 block h-[1.5px] w-full bg-current transition-all duration-300 ${
+                    open ? "top-1.5 rotate-45" : "top-0"
+                  }`}
+                />
+                <span
+                  className={`absolute left-0 block h-[1.5px] w-full bg-current transition-all duration-300 ${
+                    open ? "top-1.5 -rotate-45" : "top-3"
+                  }`}
+                />
+              </span>
+            </button>
+          </div>
         </nav>
       </Container>
 
@@ -100,9 +108,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <Button className="mt-4 w-full" size="sm" onClick={() => setOpen(false)}>
-            {site.nav.cta}
-          </Button>
+          {/* No CTA here: the one in the bar above is always visible. */}
         </Container>
       </div>
     </header>
