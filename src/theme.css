@@ -1,0 +1,131 @@
+/* ==========================================================================
+   SALANO LABS — THEME
+   --------------------------------------------------------------------------
+   This is the ONLY file you need to touch to restyle the entire site.
+   Every color, font, size, radius and timing used anywhere in the app is
+   defined here as a token. Change a value once, it updates everywhere.
+
+   Tailwind v4 turns each token into a utility class automatically:
+     --color-accent      ->  bg-accent  text-accent  border-accent
+     --font-display      ->  font-display
+     --text-hero         ->  text-hero
+   ========================================================================== */
+
+@theme {
+  /* ---------------------------------------------------------------- COLORS
+     The palette is taken from the Salano Labs logo: near-black ground,
+     white wordmark, electric blue rule. Weighted heavily to black.
+
+     Want a different accent? Change --color-accent and you're done.
+     Want a lighter site? Raise --color-bg and lower --color-text.        */
+
+  --color-bg: #050505;          /* page background — the deepest black    */
+  --color-surface: #0d0d10;     /* cards, panels sitting on the bg        */
+  --color-surface-2: #141419;   /* hover state / nested panels            */
+  --color-line: #1e1e26;        /* hairline borders and dividers          */
+
+  --color-text: #ffffff;        /* headings and primary text              */
+  --color-muted: #8a8a93;       /* body copy, captions, labels            */
+  --color-faint: #55555e;       /* disabled, fine print, decorative       */
+
+  --color-accent: #1b1bff;      /* the blue from the logo rule            */
+  --color-accent-hover: #4040ff;/* accent on hover                        */
+  --color-accent-soft: #1b1bff1a; /* 10% accent — glows and tinted fills  */
+
+  --color-success: #34d17f;     /* checkmarks in result lists             */
+
+  /* ----------------------------------------------------------- TYPOGRAPHY
+     Two families: a geometric display face for headings, a neutral face
+     for body copy. Swap the font names here and update the <link> in
+     index.html to load a different family.                               */
+
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Fluid heading sizes — they scale with the viewport, no breakpoints.  */
+  --text-hero: clamp(2.75rem, 7vw, 5.5rem);
+  --text-hero--line-height: 0.98;
+  --text-hero--letter-spacing: -0.035em;
+
+  --text-section: clamp(2rem, 4.5vw, 3.5rem);
+  --text-section--line-height: 1.05;
+  --text-section--letter-spacing: -0.03em;
+
+  --text-stat: clamp(2.5rem, 5.5vw, 4.25rem);
+  --text-stat--line-height: 1;
+  --text-stat--letter-spacing: -0.04em;
+
+  /* --------------------------------------------------------------- SHAPE */
+  --radius-card: 1rem;
+  --radius-pill: 999px;
+
+  /* -------------------------------------------------------------- MOTION */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-reveal: 700ms;
+
+  /* --------------------------------------------------- LAYOUT / SPACING
+     Section vertical rhythm and the max content width. Tighten or loosen
+     the whole page by editing these two.                                 */
+  --spacing-section: clamp(5rem, 10vw, 9rem);
+  --container-page: 76rem;
+}
+
+/* ==========================================================================
+   BASE STYLES
+   Small global rules. Most styling lives in the components as utilities.
+   ========================================================================== */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Keeps anchor targets clear of the fixed navbar. */
+    scroll-padding-top: 6rem;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+}
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+
+@layer utilities {
+  /* Scroll-reveal. Elements start hidden and are un-hidden by the
+     useReveal hook adding [data-revealed="true"]. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity var(--duration-reveal) var(--ease-out-soft),
+      transform var(--duration-reveal) var(--ease-out-soft);
+  }
+
+  .reveal[data-revealed="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Respect users who ask for less motion. */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+}
