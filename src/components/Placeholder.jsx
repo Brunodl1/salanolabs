@@ -16,6 +16,9 @@ export default function Placeholder({
   aspect = "4/5",
   className = "",
   imgClassName = "",
+  // Rendered on top of the image, but ONLY once a real file has loaded.
+  // Keeps captions from doubling up with the placeholder's own label.
+  overlay = null,
 }) {
   const [failed, setFailed] = useState(false);
 
@@ -25,13 +28,16 @@ export default function Placeholder({
       style={{ aspectRatio: aspect }}
     >
       {!failed && src ? (
-        <img
-          src={src}
-          alt={alt}
-          loading="lazy"
-          onError={() => setFailed(true)}
-          className={`h-full w-full object-cover ${imgClassName}`}
-        />
+        <>
+          <img
+            src={src}
+            alt={alt}
+            loading="lazy"
+            onError={() => setFailed(true)}
+            className={`h-full w-full object-cover ${imgClassName}`}
+          />
+          {overlay}
+        </>
       ) : (
         <div className="flex h-full w-full flex-col items-center justify-center gap-3 p-6 text-center">
           {/* Subtle diagonal hatch so empty slots read as intentional */}

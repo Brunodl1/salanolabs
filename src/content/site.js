@@ -23,14 +23,15 @@ export const site = {
     tagline:
       "Performance marketing for e-commerce brands ready to scale past their ceiling.",
     // Drop your logo files in public/assets/logo/ and point these at them.
-    logo: "/assets/logo/salano-logo.svg",
-    logoMark: "/assets/logo/salano-mark.svg",
+    logo: "/assets/logo/salano-logo.png",
+    favicon: "/assets/logo/favicon.png",
   },
 
   /* -------------------------------------------------------------------- NAV */
   nav: {
     links: [
       { label: "Results", href: "#results" },
+      { label: "Proof", href: "#proof" },
       { label: "What We Do", href: "#services" },
       { label: "Process", href: "#process" },
       { label: "Who It's For", href: "#fit" },
@@ -42,9 +43,9 @@ export const site = {
   hero: {
     eyebrow: "Trusted by growing e-commerce brands",
     // Split across lines so you control where the headline breaks.
-    headline: ["Stuck Around", "$20k/Month?"],
+    headline: ["Stuck Around", "$5k/Month?"],
     subhead:
-      "We help e-commerce brands break through their revenue ceiling with paid ads, email and SMS systems, and conversion strategy that actually compounds.",
+      "You've proven the product sells. We build the paid ads, email and SMS systems, and conversion strategy that turn a few thousand a month into a real business.",
     kicker: "Zero guesswork.",
     cta: "Apply For A Growth Audit",
     ctaNote: "90-day engagement · Limited to 4 new brands per quarter",
@@ -113,6 +114,56 @@ export const site = {
           "3.2% site-wide conversion rate",
         ],
       },
+    ],
+  },
+
+  /* ------------------------------------------------------------ PROOF GRID
+     A wall of social proof: Shopify revenue graphs, ads manager dashboards,
+     client screenshots, happy customers — whatever you have.
+
+     Drop images in public/assets/proof/ and list them here. Add or remove
+     entries freely; the grid reflows on its own. Images are center-cropped
+     to a square, so anything at any aspect ratio will look right.
+
+     `caption` is optional — leave it off for a clean image tile.           */
+  proof: {
+    eyebrow: "Receipts",
+    title: "The Proof, Not The Promises",
+    subtitle:
+      "Real dashboards, real revenue graphs, real messages from the brands we run.",
+    items: [
+      { image: "/assets/proof/proof-01.jpg", caption: "Shopify revenue" },
+      { image: "/assets/proof/proof-02.jpg", caption: "Meta Ads Manager" },
+      { image: "/assets/proof/proof-03.jpg", caption: "Klaviyo flows" },
+      { image: "/assets/proof/proof-04.jpg", caption: "Client message" },
+      { image: "/assets/proof/proof-05.jpg", caption: "Drop day" },
+      { image: "/assets/proof/proof-06.jpg", caption: "ROAS at scale" },
+      { image: "/assets/proof/proof-07.jpg", caption: "Store sessions" },
+      { image: "/assets/proof/proof-08.jpg", caption: "SMS campaign" },
+      { image: "/assets/proof/proof-09.jpg", caption: "Repeat customers" },
+      { image: "/assets/proof/proof-10.jpg", caption: "Best month yet" },
+    ],
+  },
+
+  /* ----------------------------------------------------------- HERO GALLERY
+     The two scrolling columns beside the hero headline on desktop.
+     Drop images in public/assets/hero/ and list them below. Keep the two
+     columns roughly even in length so the loop reads evenly.
+
+     Portrait crops (4:5) work best — brand photography, product shots,
+     campaign creative.                                                     */
+  heroGallery: {
+    columnOne: [
+      "/assets/hero/hero-01.jpg",
+      "/assets/hero/hero-02.jpg",
+      "/assets/hero/hero-03.jpg",
+      "/assets/hero/hero-04.jpg",
+    ],
+    columnTwo: [
+      "/assets/hero/hero-05.jpg",
+      "/assets/hero/hero-06.jpg",
+      "/assets/hero/hero-07.jpg",
+      "/assets/hero/hero-08.jpg",
     ],
   },
 
@@ -212,13 +263,13 @@ export const site = {
     title: "Who This Is For",
     intro: "We work with brands that:",
     criteria: [
-      "Are generating $20k+ per month in revenue",
-      "Are spending at least $5k per month on paid ads",
-      "Have proven products and real market fit",
+      "Already have sales coming in and want to scale them",
+      "Have products people genuinely come back for",
+      "Are ready to run ads consistently, not in bursts",
       "Want a long-term growth partner, not a freelancer",
     ],
     exclusion:
-      "Not for early-stage brands, pre-revenue startups, or anyone shopping for cheap ad management.",
+      "Not for pre-revenue stores, unproven products, or anyone shopping for the cheapest ad management they can find.",
     cta: "Request My Brand Audit",
   },
 
@@ -269,17 +320,7 @@ export const site = {
           { label: "Terms of Service", href: "/terms" },
         ],
       },
-      {
-        title: "Social",
-        links: [
-          // TODO: replace with the real Instagram handle
-          { label: "Instagram", href: "https://instagram.com/", external: true },
-        ],
-      },
     ],
-    // TODO: replace with the real business address and contact email
-    address: "[BUSINESS ADDRESS]",
-    email: "hello@salanolabs.com",
     copyright: `© ${new Date().getFullYear()} Salano Labs LLC — Performance Marketing for E-commerce Brands`,
   },
 

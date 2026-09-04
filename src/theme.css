@@ -28,9 +28,11 @@
   --color-muted: #8a8a93;       /* body copy, captions, labels            */
   --color-faint: #55555e;       /* disabled, fine print, decorative       */
 
-  --color-accent: #1b1bff;      /* the blue from the logo rule            */
-  --color-accent-hover: #4040ff;/* accent on hover                        */
-  --color-accent-soft: #1b1bff1a; /* 10% accent — glows and tinted fills  */
+  --color-accent: #3b3bff;      /* the logo blue, brightened to carry on  */
+                                /* black — pure #1b1bff reads muddy here  */
+  --color-accent-hover: #6b6bff;/* accent on hover                        */
+  --color-accent-soft: #3b3bff26; /* 15% accent — glows and tinted fills  */
+  --color-accent-glow: #5a5aff; /* brightest tint, for text and hairlines */
 
   --color-success: #34d17f;     /* checkmarks in result lists             */
 
@@ -120,12 +122,37 @@
     transform: none;
   }
 
+  /* ---------------------------------------------------------------- MARQUEE
+     The vertical scrolling image columns in the hero. The track holds the
+     image list twice, so translating it exactly -50% loops seamlessly.
+     Speed is set per column with --marquee-duration.                      */
+  .marquee-track {
+    animation: marquee-up var(--marquee-duration, 40s) linear infinite;
+  }
+
+  .marquee-track--reverse {
+    animation-direction: reverse;
+  }
+
+  @keyframes marquee-up {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
   /* Respect users who ask for less motion. */
   @media (prefers-reduced-motion: reduce) {
     .reveal {
       opacity: 1;
       transform: none;
       transition: none;
+    }
+
+    .marquee-track {
+      animation: none;
     }
   }
 }

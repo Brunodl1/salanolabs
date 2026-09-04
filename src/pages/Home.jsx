@@ -1,6 +1,7 @@
 import Hero from "../sections/Hero";
 import Stats from "../sections/Stats";
 import CaseStudies from "../sections/CaseStudies";
+import Proof from "../sections/Proof";
 import Services from "../sections/Services";
 import Process from "../sections/Process";
 import Fit from "../sections/Fit";
@@ -17,6 +18,7 @@ export default function Home() {
       <Hero />
       <Stats />
       <CaseStudies />
+      <Proof />
       <Services />
       <Process />
       <Fit />

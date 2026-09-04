@@ -13,12 +13,11 @@ you can add files one at a time.
 
 | File | Used for | Notes |
 | --- | --- | --- |
-| `salano-logo.svg` | Navbar and footer lockup | SVG preferred. White wordmark on transparent — the site background is black. Roughly 4:1 wide. |
-| `salano-mark.svg` | Square icon version | Optional. |
-| `favicon.svg` | Browser tab icon | Referenced from `index.html`. A 32×32 PNG named `favicon.png` works too — update the `<link>` tag if you switch. |
+| `salano-logo.png` | Navbar and footer lockup | ✅ In place. White wordmark on transparent, 700×356. Swap for an SVG any time — update the path in `site.js`. |
+| `favicon.png` | Browser tab icon | ✅ In place. 500×500, referenced from `index.html`. |
 
-Until `salano-logo.svg` exists, the site draws a typographic stand-in that
-matches the real mark (heavy SALANO, blue rule, spaced LABS).
+If the logo file is ever missing, the site falls back to a typographic
+stand-in that matches the mark (heavy SALANO, blue rule, spaced LABS).
 
 ## `case-studies/`
 
@@ -47,6 +46,40 @@ reduced opacity, so single-color versions on transparent work best. Missing
 files fall back to the brand name as text.
 
 Add or remove entries in the `brandLogos` array to change how many show.
+
+## `hero/`
+
+The two scrolling columns beside the hero headline on desktop. Listed in
+`site.js` under `heroGallery`.
+
+| File | Used for |
+| --- | --- |
+| `hero-01.jpg` … `hero-04.jpg` | Left column (scrolls up) |
+| `hero-05.jpg` … `hero-08.jpg` | Right column (scrolls down) |
+
+**Size:** portrait, 800×1000 (4:5), JPG or WebP. Brand photography, product
+shots or campaign creative work best. Keep the two columns the same length so
+the loop reads evenly — add or remove entries in `site.js` to change how many.
+
+The columns are hidden below the `lg` breakpoint, so these never load on phones.
+
+## `proof/`
+
+The social-proof wall — Shopify revenue graphs, Meta Ads Manager dashboards,
+Klaviyo screenshots, client messages, happy customers. Listed in `site.js`
+under `proof.items`.
+
+| File | Used for |
+| --- | --- |
+| `proof-01.jpg` … `proof-10.jpg` | The proof grid |
+
+**Size:** anything. Tiles are square and images are center-cropped to fill, so
+a wide dashboard screenshot and a tall phone screenshot both sit in the grid
+without distorting. If a screenshot has important detail near an edge, crop it
+closer to square yourself first so the center crop doesn't cut it off.
+
+Add or remove entries in the `proof.items` array — the grid reflows on its own.
+Each item takes an optional `caption`; omit it for a clean tile.
 
 ## `og/`
 

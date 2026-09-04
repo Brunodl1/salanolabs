@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { site } from "../content/site";
-import { Container } from "./ui";
+import { Container } from "../components/ui";
 import Logo from "./Logo";
 
 export default function Footer() {
@@ -48,25 +48,6 @@ export default function Footer() {
                 </ul>
               </div>
             ))}
-
-            <div>
-              <h3 className="font-display text-xs font-semibold uppercase tracking-[0.22em] text-faint">
-                Contact
-              </h3>
-              <ul className="mt-5 space-y-3">
-                <li>
-                  <a
-                    href={`mailto:${footer.email}`}
-                    className="text-sm text-muted transition-colors hover:text-text"
-                  >
-                    {footer.email}
-                  </a>
-                </li>
-                <li className="max-w-[14rem] text-sm leading-relaxed text-faint">
-                  {footer.address}
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
 
