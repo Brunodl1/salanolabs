@@ -1,6 +1,6 @@
 import { site } from "../content/site";
 import { CheckItem, Container, Section, SectionHeading } from "../components/ui";
-import Placeholder from "../components/Placeholder";
+import CardCarousel from "../components/CardCarousel";
 import Reveal from "../components/Reveal";
 
 function CaseStudyCard({ item, index }) {
@@ -10,14 +10,7 @@ function CaseStudyCard({ item, index }) {
       delay={index * 90}
       className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-surface transition-colors duration-300 hover:border-accent/40"
     >
-      <Placeholder
-        src={item.image}
-        alt={item.imageAlt}
-        label={`${item.brand} image`}
-        aspect="4/3"
-        className="rounded-none border-0 border-b border-line"
-        imgClassName="transition-transform duration-700 group-hover:scale-[1.03]"
-      />
+      <CardCarousel slides={item.slides} aspect="4/3" label={`${item.brand} images`} />
 
       <div className="flex flex-1 flex-col gap-5 p-6 sm:p-7">
         <div>

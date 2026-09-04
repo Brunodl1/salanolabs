@@ -7,6 +7,11 @@ name matches what's listed there, it just appears.
 Anything missing renders as a labeled placeholder box instead of breaking, so
 you can add files one at a time.
 
+**Every folder except `proof/` is already populated with branded placeholder
+images.** They are clearly stamped PLACEHOLDER so none of them can be mistaken
+for real client work. Overwrite them with the real files, keeping the same
+names, and nothing else needs to change.
+
 ---
 
 ## `logo/`
@@ -21,16 +26,23 @@ stand-in that matches the mark (heavy SALANO, blue rule, spaced LABS).
 
 ## `case-studies/`
 
-One image per case study. Listed in `site.js` under `caseStudies.items[].image`.
+Each card carries a **two-slide carousel**: the person, then the proof. Listed
+in `site.js` under `caseStudies.items[].slides`.
 
-| File | Used for |
-| --- | --- |
-| `client-one.jpg` | First case study card |
-| `client-two.jpg` | Second case study card |
-| `client-three.jpg` | Third case study card |
+| File | Slide | Should show |
+| --- | --- | --- |
+| `client-one-person.jpg` | 1 | The founder / client |
+| `client-one-result.jpg` | 2 | Their revenue graph, dashboard or screenshot |
+| `client-two-person.jpg` | 1 | The founder / client |
+| `client-two-result.jpg` | 2 | Their result |
+| `client-three-person.jpg` | 1 | The founder / client |
+| `client-three-result.jpg` | 2 | Their result |
 
-**Size:** 1200×900 (4:3), JPG or WebP. They're displayed cropped to fill, so
-keep the subject centered. Aim for under 300 KB each.
+**Size:** 1200×900 (4:3), JPG or WebP. Center-cropped to fill, so keep the
+subject centered. Aim for under 300 KB each.
+
+Placeholder versions are already in place. Want more than two slides on a
+card? Just add entries to that card's `slides` array; the dots follow.
 
 ## `brands/`
 
@@ -39,11 +51,14 @@ Small client logos for the "trusted by" strip under the hero. Listed in
 
 | File | Used for |
 | --- | --- |
-| `brand-1.svg` … `brand-5.svg` | Logo strip |
+| `brand-1.png` … `brand-5.png` | Logo strip |
 
-**Size:** SVG preferred, or PNG at ~200×56. They render white/greyscale at
+**Size:** SVG preferred, or PNG at ~260×64. They render white/greyscale at
 reduced opacity, so single-color versions on transparent work best. Missing
 files fall back to the brand name as text.
+
+⚠️ The current files and the names in `site.js` are invented placeholders
+(NORTHSIDE, ATELIER 9, …). Replace both with real clients before launch.
 
 Add or remove entries in the `brandLogos` array to change how many show.
 
@@ -61,7 +76,8 @@ The two scrolling columns beside the hero headline on desktop. Listed in
 shots or campaign creative work best. Keep the two columns the same length so
 the loop reads evenly — add or remove entries in `site.js` to change how many.
 
-The columns are hidden below the `lg` breakpoint, so these never load on phones.
+Placeholder versions are already in place, and the columns show at every
+screen size.
 
 ## `proof/`
 

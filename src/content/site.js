@@ -63,8 +63,10 @@ export const site = {
 
   /* ----------------------------------------------------------- CASE STUDIES
      [PLACEHOLDER] — every brand, number and quote below is invented.
-     Replace with real client results and drop the matching image in
-     public/assets/case-studies/.                                            */
+
+     Each card carries a two-slide carousel: `slides[0]` is the person and
+     `slides[1]` is the proof (a revenue graph, dashboard, or screenshot).
+     Replace both files in public/assets/case-studies/.                      */
   caseStudies: {
     title: "Real Results From Real Brands",
     subtitle: "Brands that were stuck, now scaling profitably across every channel.",
@@ -74,8 +76,19 @@ export const site = {
         headline: "$53,000 On Drop Day",
         handle: "@clientone",
         handleUrl: "#",
-        image: "/assets/case-studies/client-one.jpg",
-        imageAlt: "[PLACEHOLDER] Client One campaign creative",
+        // Two slides per card: the person, then the proof.
+        slides: [
+          {
+            src: "/assets/case-studies/client-one-person.jpg",
+            alt: "[PLACEHOLDER] founder photo",
+            label: "The founder",
+          },
+          {
+            src: "/assets/case-studies/client-one-result.jpg",
+            alt: "[PLACEHOLDER] result screenshot",
+            label: "The result",
+          },
+        ],
         description:
           "Built the SMS list from scratch, rebuilt the automation flows, and sharpened the offer. Their next drop did more in an hour than the previous month.",
         results: [
@@ -89,8 +102,19 @@ export const site = {
         headline: "$100k+ In The First 90 Days",
         handle: "@clienttwo",
         handleUrl: "#",
-        image: "/assets/case-studies/client-two.jpg",
-        imageAlt: "[PLACEHOLDER] Client Two campaign creative",
+        // Two slides per card: the person, then the proof.
+        slides: [
+          {
+            src: "/assets/case-studies/client-two-person.jpg",
+            alt: "[PLACEHOLDER] founder photo",
+            label: "The founder",
+          },
+          {
+            src: "/assets/case-studies/client-two-result.jpg",
+            alt: "[PLACEHOLDER] result screenshot",
+            label: "The result",
+          },
+        ],
         description:
           "They were living drop to drop with no predictable revenue. We rebuilt the funnel, restructured the ad account, and turned it into a system that prints profit between launches.",
         results: [
@@ -104,8 +128,19 @@ export const site = {
         headline: "$61k In 35 Days",
         handle: "@clientthree",
         handleUrl: "#",
-        image: "/assets/case-studies/client-three.jpg",
-        imageAlt: "[PLACEHOLDER] Client Three campaign creative",
+        // Two slides per card: the person, then the proof.
+        slides: [
+          {
+            src: "/assets/case-studies/client-three-person.jpg",
+            alt: "[PLACEHOLDER] founder photo",
+            label: "The founder",
+          },
+          {
+            src: "/assets/case-studies/client-three-result.jpg",
+            alt: "[PLACEHOLDER] result screenshot",
+            label: "The result",
+          },
+        ],
         description:
           "A brand new store with no history. Our creative testing system found the winning angle in week two and we scaled it hard from there.",
         results: [
@@ -309,13 +344,14 @@ export const site = {
 
   /* --------------------------------------------------------- BRAND LOGO ROW
      Small logos in the "trusted by" strip under the hero.
-     Drop files in public/assets/brands/ and list them here.                  */
+     [PLACEHOLDER] — these are invented brand names. Replace the files in
+     public/assets/brands/ and the names here with real clients.              */
   brandLogos: [
-    { name: "[BRAND 1]", image: "/assets/brands/brand-1.svg" },
-    { name: "[BRAND 2]", image: "/assets/brands/brand-2.svg" },
-    { name: "[BRAND 3]", image: "/assets/brands/brand-3.svg" },
-    { name: "[BRAND 4]", image: "/assets/brands/brand-4.svg" },
-    { name: "[BRAND 5]", image: "/assets/brands/brand-5.svg" },
+    { name: "NORTHSIDE", image: "/assets/brands/brand-1.png" },
+    { name: "ATELIER 9", image: "/assets/brands/brand-2.png" },
+    { name: "VANTA CO", image: "/assets/brands/brand-3.png" },
+    { name: "RUNWELL", image: "/assets/brands/brand-4.png" },
+    { name: "OKAPI", image: "/assets/brands/brand-5.png" },
   ],
 };
 
