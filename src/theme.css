@@ -53,7 +53,8 @@
   --text-section--line-height: 1.05;
   --text-section--letter-spacing: -0.03em;
 
-  --text-stat: clamp(2.5rem, 5.5vw, 4.25rem);
+  /* Floors low enough for three stats across a 390px phone. */
+  --text-stat: clamp(1.4rem, 4.6vw, 4.25rem);
   --text-stat--line-height: 1;
   --text-stat--letter-spacing: -0.04em;
 

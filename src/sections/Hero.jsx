@@ -1,4 +1,4 @@
-import { site, BOOKING_URL } from "../content/site";
+import { site } from "../content/site";
 import { Button, Container } from "../components/ui";
 import Reveal from "../components/Reveal";
 import Placeholder from "../components/Placeholder";
@@ -80,13 +80,13 @@ export default function Hero() {
             </Reveal>
 
             <Reveal delay={160}>
-              <p className="mt-7 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+              <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
                 {hero.subhead} <span className="font-semibold text-text">{hero.kicker}</span>
               </p>
             </Reveal>
 
             <Reveal delay={240} className="mt-10 w-full sm:w-auto">
-              <Button href={BOOKING_URL} size="lg" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto">
                 {hero.cta}
               </Button>
             </Reveal>
@@ -97,12 +97,12 @@ export default function Hero() {
           </div>
 
           {/* --------------------------------------------- SCROLLING IMAGES
-              Hidden below lg — on mobile the proof grid carries the imagery
-              instead, and a marquee here would just push the CTA off screen. */}
+              Shown at every size. Shorter on phones so it doesn't push the
+              rest of the page too far down. */}
           <Reveal
             delay={360}
             aria-hidden="true"
-            className="relative hidden h-[38rem] overflow-hidden lg:block"
+            className="relative h-[22rem] overflow-hidden sm:h-[28rem] lg:h-[38rem]"
           >
             <div className="grid grid-cols-2 gap-4">
               <MarqueeColumn images={heroGallery.columnOne} duration="46s" />

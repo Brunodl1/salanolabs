@@ -13,7 +13,7 @@ export default function Footer() {
           {/* Brand + blurb */}
           <div className="max-w-sm">
             <Logo size="lg" />
-            <p className="mt-7 text-sm leading-relaxed text-muted">{footer.blurb}</p>
+            <p className="mt-7 text-base leading-relaxed text-muted">{footer.blurb}</p>
           </div>
 
           {/* Link columns */}

@@ -19,12 +19,12 @@ export default function Proof() {
       <Container>
         <SectionHeading eyebrow={proof.eyebrow} title={proof.title} subtitle={proof.subtitle} />
 
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-14 grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2">
           {proof.items.map((item, index) => (
             <Reveal
               key={item.image}
               // Stagger caps out so the last tiles don't lag noticeably.
-              delay={Math.min(index, 9) * 55}
+              delay={Math.min(index, 5) * 70}
               className="group relative"
             >
               <Placeholder
@@ -37,15 +37,13 @@ export default function Proof() {
                 overlay={
                   item.caption ? (
                     <div
-                      className="pointer-events-none absolute inset-x-0 bottom-0 p-3"
+                      className="pointer-events-none absolute inset-x-0 bottom-0 p-4"
                       style={{
                         background:
                           "linear-gradient(to top, color-mix(in srgb, var(--color-bg) 92%, transparent), transparent)",
                       }}
                     >
-                      <p className="truncate text-[0.7rem] font-medium text-white/90 sm:text-xs">
-                        {item.caption}
-                      </p>
+                      <p className="truncate text-sm font-medium text-white/90">{item.caption}</p>
                     </div>
                   ) : null
                 }

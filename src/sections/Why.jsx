@@ -30,7 +30,7 @@ export default function Why() {
               <h3 className="font-display text-xl font-bold tracking-tight text-balance">
                 {pillar.title}
               </h3>
-              <p className="text-sm leading-relaxed text-muted">{pillar.description}</p>
+              <p className="text-base leading-relaxed text-muted">{pillar.description}</p>
             </Reveal>
           ))}
         </div>

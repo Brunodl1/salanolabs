@@ -38,7 +38,7 @@ function CaseStudyCard({ item, index }) {
         </div>
 
         {/* grow pushes the results list to the bottom so cards align */}
-        <p className="grow text-sm leading-relaxed text-muted">{item.description}</p>
+        <p className="grow text-base leading-relaxed text-muted">{item.description}</p>
 
         <ul className="mt-1 flex flex-col gap-3 border-t border-line pt-5">
           {item.results.map((result) => (

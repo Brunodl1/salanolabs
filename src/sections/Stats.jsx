@@ -46,14 +46,14 @@ function Stat({ stat }) {
   return (
     <div
       ref={ref}
-      className="flex flex-col items-center gap-2 py-8 text-center sm:py-10"
+      className="flex flex-col items-center gap-1.5 px-2 py-7 text-center sm:gap-2 sm:px-4 sm:py-10"
     >
       <p className="font-display text-stat font-extrabold">
         {stat.prefix}
         {display}
         <span className="text-accent">{stat.suffix}</span>
       </p>
-      <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted sm:text-sm sm:tracking-[0.14em]">
+      <p className="text-[0.6rem] font-medium uppercase leading-snug tracking-[0.1em] text-muted sm:text-sm sm:tracking-[0.14em]">
         {stat.label}
       </p>
     </div>
@@ -64,8 +64,8 @@ export default function Stats() {
   return (
     <section className="border-y border-line bg-surface/40">
       <Container>
-        {/* Stacked on mobile with dividers between, three across from sm up. */}
-        <div className="grid grid-cols-1 divide-y divide-line sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        {/* Three across at every size, divided by hairlines. */}
+        <div className="grid grid-cols-3 divide-x divide-line">
           {site.stats.map((stat) => (
             <Stat key={stat.label} stat={stat} />
           ))}

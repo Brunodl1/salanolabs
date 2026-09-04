@@ -9,11 +9,13 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   BOOKING LINK
-   Every "book / apply" button on the site points here. Change this one line
-   and all of them update. Paste your Cal.com or Calendly URL below.
+   BOOKING
+   The calendar is embedded directly in the page, so nobody has to leave the
+   site to book. BOOKING_URL is the Calendly event the embed loads.
+   BOOKING_ANCHOR is where every button on the site scrolls to.
    -------------------------------------------------------------------------- */
-export const BOOKING_URL = "https://cal.com/your-handle/growth-audit"; // TODO: replace with the real booking link
+export const BOOKING_URL = "https://calendly.com/wayne-g-tobacco/1-on-1-discovery-call";
+export const BOOKING_ANCHOR = "#book";
 
 export const site = {
   /* ------------------------------------------------------------------ BRAND */
@@ -34,9 +36,8 @@ export const site = {
       { label: "Proof", href: "#proof" },
       { label: "What We Do", href: "#services" },
       { label: "Process", href: "#process" },
-      { label: "Who It's For", href: "#fit" },
     ],
-    cta: "Apply For A Growth Audit",
+    cta: "Book A Call",
   },
 
   /* ------------------------------------------------------------------- HERO */
@@ -45,7 +46,7 @@ export const site = {
     // Split across lines so you control where the headline breaks.
     headline: ["Stuck Around", "$5k/Month?"],
     subhead:
-      "You've proven the product sells. We build the paid ads, email and SMS systems, and conversion strategy that turn a few thousand a month into a real business.",
+      "You proved the product sells. We build the ads, email, SMS and conversion systems that turn a few thousand a month into a real business.",
     kicker: "Zero guesswork.",
     cta: "Apply For A Growth Audit",
     ctaNote: "90-day engagement · Limited to 4 new brands per quarter",
@@ -66,8 +67,7 @@ export const site = {
      public/assets/case-studies/.                                            */
   caseStudies: {
     title: "Real Results From Real Brands",
-    subtitle:
-      "Brands that were stuck before, now scaling profitably across paid, email and SMS.",
+    subtitle: "Brands that were stuck, now scaling profitably across every channel.",
     items: [
       {
         brand: "[CLIENT ONE]",
@@ -129,8 +129,7 @@ export const site = {
   proof: {
     eyebrow: "Receipts",
     title: "The Proof, Not The Promises",
-    subtitle:
-      "Real dashboards, real revenue graphs, real messages from the brands we run.",
+    subtitle: "Real dashboards, real revenue, real messages from the brands we run.",
     items: [
       { image: "/assets/proof/proof-01.jpg", caption: "Shopify revenue" },
       { image: "/assets/proof/proof-02.jpg", caption: "Meta Ads Manager" },
@@ -172,14 +171,16 @@ export const site = {
   services: {
     eyebrow: "The Engagement",
     title: "Everything That Moves Revenue. Handled.",
-    subtitle:
-      "One team running the channels that compound — not four freelancers pointing at each other.",
+    subtitle: "One team running the channels that compound, not four freelancers pointing at each other.",
+    // `icon` picks the mark drawn beside each service. Available icons live
+    // in src/components/ServiceIcon.jsx: megaphone, inbox, cart, chart.
     items: [
       {
         number: "01",
+        icon: "megaphone",
         title: "Paid Advertising",
         description:
-          "Full strategy and day-to-day management of your Meta ad account, plus a structured creative testing system that keeps finding new winning angles instead of riding one until it dies.",
+          "Full strategy and daily management of your Meta ad account, plus a creative testing system that keeps finding new winning angles.",
         points: [
           "Account structure and scaling strategy",
           "Continuous creative testing",
@@ -188,9 +189,10 @@ export const site = {
       },
       {
         number: "02",
+        icon: "inbox",
         title: "Email & SMS",
         description:
-          "We build and run the retention side properly — the automated flows that earn money while you sleep, and the campaign calendar that makes every drop land harder.",
+          "We run the retention side properly. The automated flows that earn while you sleep, and the campaign calendar that makes every drop land harder.",
         points: [
           "Core automation flows built and optimized",
           "Campaign and drop calendar",
@@ -199,9 +201,10 @@ export const site = {
       },
       {
         number: "03",
+        icon: "cart",
         title: "Conversion Optimization",
         description:
-          "Traffic is wasted on a store that doesn't convert. We work on the offer, the pricing, the product presentation and the checkout path until the numbers move.",
+          "Traffic is wasted on a store that does not convert. We work the offer, the pricing and the checkout path until the numbers move.",
         points: [
           "Offer and pricing strategy",
           "Landing page and PDP improvements",
@@ -210,9 +213,10 @@ export const site = {
       },
       {
         number: "04",
+        icon: "chart",
         title: "Tracking & Reporting",
         description:
-          "Proper attribution set up from day one, so you know what's actually working. A written update every week and a full performance report every month.",
+          "Proper attribution from day one, so you know what is actually working. A written update every week and a full report every month.",
         points: [
           "Attribution and tracking setup",
           "Weekly written performance updates",
@@ -227,58 +231,40 @@ export const site = {
   process: {
     eyebrow: "How It Works",
     title: "A 90-Day Engagement, Not A Retainer Treadmill",
-    subtitle:
-      "One focused sprint with a defined start, a defined end, and a defined target.",
+    subtitle: "One focused sprint with a defined start, end and target.",
     steps: [
       {
         step: "Step 01",
         title: "Audit & Onboarding",
         description:
-          "We audit the account, the store and the offer, then build the strategy and configure every platform. You get a clear picture of what's actually holding the brand back.",
+          "We audit the account, the store and the offer, then build the strategy and configure every platform.",
       },
       {
         step: "Step 02",
         title: "Launch",
         description:
-          "Campaigns go live within two weeks of kickoff. Flows are built, tracking is connected, and the first creative tests are already running.",
+          "Campaigns go live within two weeks. Flows are built, tracking is connected, first tests running.",
       },
       {
         step: "Step 03",
         title: "The 90-Day Performance Period",
         description:
-          "Ninety days of active management against an agreed revenue target. Weekly written updates, monthly reports, and direct access to the strategist running your account.",
+          "Ninety days of active management against an agreed target, with direct access to the strategist running your account.",
       },
       {
         step: "Step 04",
         title: "Scale",
         description:
-          "What worked gets documented and scaled. You either continue with a proven system or you walk away owning one.",
+          "What worked gets documented and scaled. You walk away owning a proven system.",
       },
     ],
-  },
-
-  /* -------------------------------------------------------------------- FIT */
-  fit: {
-    eyebrow: "Qualification",
-    title: "Who This Is For",
-    intro: "We work with brands that:",
-    criteria: [
-      "Already have sales coming in and want to scale them",
-      "Have products people genuinely come back for",
-      "Are ready to run ads consistently, not in bursts",
-      "Want a long-term growth partner, not a freelancer",
-    ],
-    exclusion:
-      "Not for pre-revenue stores, unproven products, or anyone shopping for the cheapest ad management they can find.",
-    cta: "Request My Brand Audit",
   },
 
   /* ------------------------------------------------------------------- WHY */
   why: {
     eyebrow: "Why Salano",
     title: "Tired Of Agencies That Don't Deliver?",
-    subtitle:
-      "No VAs running your account. No guesswork. Real strategy, real operators, real reporting.",
+    subtitle: "No VAs on your account. No guesswork. Real strategy, real operators.",
     pillars: [
       {
         title: "Done-For-You Growth",
@@ -288,12 +274,12 @@ export const site = {
       {
         title: "Full-Funnel, Not Just Ads",
         description:
-          "Paid, email, SMS and conversion all run by one team, so the channels compound instead of competing.",
+          "Paid, email, SMS and conversion run by one team, so the channels compound instead of competing.",
       },
       {
         title: "Partnership-Driven",
         description:
-          "You work directly with the strategist running your account. Weekly updates, monthly reports, no account-manager telephone game.",
+          "You work directly with the strategist running your account. Weekly updates, monthly reports.",
       },
     ],
   },
@@ -302,16 +288,13 @@ export const site = {
   finalCta: {
     eyebrow: "Ready For Real Results?",
     title: "You've Built The Brand. We'll Build The Scale.",
-    subtitle:
-      "Book a free growth audit and we'll show you exactly what's capping your revenue right now.",
-    cta: "Book My Audit Now",
-    note: "Free · 30 minutes · No pitch if you're not a fit",
+    subtitle: "Pick a time below and we'll show you what's capping your revenue right now.",
+    note: "Free · 45 minutes · No pitch if you're not a fit",
   },
 
   /* ----------------------------------------------------------------- FOOTER */
   footer: {
-    blurb:
-      "We help e-commerce brands unlock consistent, profitable growth through world-class advertising, retention systems and conversion strategy.",
+    blurb: "We help e-commerce brands unlock consistent, profitable growth through advertising, retention systems and conversion strategy.",
     columns: [
       {
         title: "Policies",
@@ -321,7 +304,7 @@ export const site = {
         ],
       },
     ],
-    copyright: `© ${new Date().getFullYear()} Salano Labs LLC — Performance Marketing for E-commerce Brands`,
+    copyright: `© ${new Date().getFullYear()} Salano Labs LLC · Performance Marketing for E-commerce Brands`,
   },
 
   /* --------------------------------------------------------- BRAND LOGO ROW

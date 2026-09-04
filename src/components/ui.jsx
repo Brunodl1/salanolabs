@@ -1,4 +1,4 @@
-import { BOOKING_URL } from "../content/site";
+import { BOOKING_ANCHOR } from "../content/site";
 
 /* --------------------------------------------------------------- CONTAINER */
 
@@ -13,11 +13,13 @@ export function Container({ className = "", children }) {
 
 /**
  * The site's call-to-action button.
- * Defaults to linking at BOOKING_URL from content/site.js.
+ *
+ * Defaults to BOOKING_ANCHOR, which scrolls down to the embedded calendar
+ * rather than sending anyone off-site.
  */
 export function Button({
   children,
-  href = BOOKING_URL,
+  href = BOOKING_ANCHOR,
   variant = "primary",
   size = "md",
   className = "",
@@ -85,7 +87,7 @@ export function SectionHeading({ eyebrow, title, subtitle, align = "left", class
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
       <h2 className="max-w-3xl text-section text-balance">{title}</h2>
       {subtitle && (
-        <p className="max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{subtitle}</p>
+        <p className="max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">{subtitle}</p>
       )}
     </div>
   );
@@ -109,7 +111,7 @@ export function CheckItem({ children, className = "" }) {
           clipRule="evenodd"
         />
       </svg>
-      <span className="text-[0.95rem] leading-relaxed text-muted">{children}</span>
+      <span className="text-base leading-relaxed text-muted">{children}</span>
     </li>
   );
 }

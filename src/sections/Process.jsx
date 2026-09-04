@@ -36,7 +36,7 @@ export default function Process() {
               <h3 className="font-display text-xl font-bold tracking-tight text-balance">
                 {step.title}
               </h3>
-              <p className="text-sm leading-relaxed text-muted">{step.description}</p>
+              <p className="text-base leading-relaxed text-muted">{step.description}</p>
             </Reveal>
           ))}
         </ol>

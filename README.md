@@ -39,14 +39,16 @@ Every headline, paragraph, stat, case study, nav link and footer detail lives
 here in one object. Change the text, save, done. You never need to open a
 component to change copy.
 
-The booking link is the constant at the top:
+Booking is handled by two constants at the top:
 
 ```js
-export const BOOKING_URL = "https://cal.com/your-handle/growth-audit";
+export const BOOKING_URL = "https://calendly.com/wayne-g-tobacco/1-on-1-discovery-call";
+export const BOOKING_ANCHOR = "#book";
 ```
 
-Every CTA button on the site points at it. Change that one line and all of
-them update.
+`BOOKING_URL` is the Calendly event embedded at the bottom of the page.
+`BOOKING_ANCHOR` is where every button scrolls to. Nobody leaves the site to
+book. To point at a different calendar, change `BOOKING_URL` only.
 
 ### 2. `src/theme.css` — all the styling
 
@@ -100,10 +102,9 @@ self-contained and pulls its own copy from `site.js`.
 
 ## Before this goes live
 
-- [ ] Set the real `BOOKING_URL` in `src/content/site.js`
+- [ ] Confirm `BOOKING_URL` points at the right Calendly event
 - [ ] Replace everything marked `[PLACEHOLDER]` in `site.js` — the stats and all
       three case studies are currently invented numbers
-- [ ] Fill in the real contact email, business address and Instagram URL
 - [ ] Drop the real logo, case study images, brand logos and OG image into
       `public/assets/`
 - [ ] Have a lawyer review `src/content/legal.js` — the privacy policy and terms

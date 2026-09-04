@@ -4,9 +4,8 @@ import CaseStudies from "../sections/CaseStudies";
 import Proof from "../sections/Proof";
 import Services from "../sections/Services";
 import Process from "../sections/Process";
-import Fit from "../sections/Fit";
 import Why from "../sections/Why";
-import FinalCta from "../sections/FinalCta";
+import Booking from "../sections/Booking";
 
 /**
  * The landing page. Reorder, add or remove sections here — each one is
@@ -21,9 +20,8 @@ export default function Home() {
       <Proof />
       <Services />
       <Process />
-      <Fit />
       <Why />
-      <FinalCta />
+      <Booking />
     </>
   );
 }
