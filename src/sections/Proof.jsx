@@ -4,12 +4,14 @@ import Placeholder from "../components/Placeholder";
 import Reveal from "../components/Reveal";
 
 /**
- * A wall of social proof — Shopify graphs, ads dashboards, client messages.
+ * A wall of social proof: Shopify revenue graphs, ads dashboards, creative.
  *
- * Every tile is a fixed square and images are center-cropped to fill it
- * (object-cover), so screenshots at any aspect ratio sit in the grid without
- * distorting or leaving gaps. Add or remove items in site.js and the grid
- * reflows on its own.
+ * Images keep their own proportions rather than being cropped to a fixed
+ * box. These are screenshots whose whole point is the numbers in them, and
+ * a square crop would cut the revenue breakdown clean off the right edge.
+ *
+ * Because the heights vary, the grid is a CSS column layout (masonry): one
+ * column on mobile, two on desktop, with each tile kept whole.
  */
 export default function Proof() {
   const { proof } = site;
@@ -19,35 +21,33 @@ export default function Proof() {
       <Container>
         <SectionHeading eyebrow={proof.eyebrow} title={proof.title} subtitle={proof.subtitle} />
 
-        <div className="mt-14 grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-2">
+        <div className="mt-14 gap-4 sm:gap-5 [column-count:1] lg:[column-count:2]">
           {proof.items.map((item, index) => (
             <Reveal
               key={item.image}
-              // Stagger caps out so the last tiles don't lag noticeably.
+              // Stagger caps out so later tiles don't lag noticeably.
               delay={Math.min(index, 5) * 70}
-              className="group relative"
+              className="group mb-4 break-inside-avoid sm:mb-5"
             >
-              <Placeholder
-                src={item.image}
-                alt={item.caption || "Client result"}
-                label={item.caption || "Proof"}
-                aspect="1/1"
-                className="transition-colors duration-300 group-hover:border-accent/50"
-                imgClassName="transition-transform duration-500 group-hover:scale-[1.04]"
-                overlay={
-                  item.caption ? (
-                    <div
-                      className="pointer-events-none absolute inset-x-0 bottom-0 p-4"
-                      style={{
-                        background:
-                          "linear-gradient(to top, color-mix(in srgb, var(--color-bg) 92%, transparent), transparent)",
-                      }}
-                    >
-                      <p className="truncate text-sm font-medium text-white/90">{item.caption}</p>
-                    </div>
-                  ) : null
-                }
-              />
+              <figure className="overflow-hidden rounded-card border border-line bg-surface transition-colors duration-300 hover:border-accent/50">
+                <Placeholder
+                  src={item.image}
+                  alt={item.caption || "Client result"}
+                  label={item.caption || "Proof"}
+                  aspect={null}
+                  className="rounded-none border-0"
+                  // Wide dashboards land around 240px tall and never hit this
+                  // cap. It exists so a tall portrait shot can't balloon to
+                  // three times the height of everything around it.
+                  imgClassName="max-h-[30rem] object-cover object-top"
+                />
+
+                {item.caption && (
+                  <figcaption className="border-t border-line px-4 py-3 text-sm leading-snug text-muted">
+                    {item.caption}
+                  </figcaption>
+                )}
+              </figure>
             </Reveal>
           ))}
         </div>

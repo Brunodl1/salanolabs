@@ -8,6 +8,10 @@ import { useState } from "react";
  * it's looking for — so you always know which file to drop where.
  *
  * The moment you add the real file, it renders instead. No code change.
+ *
+ * Pass aspect={null} to let the image keep its own proportions instead of
+ * being cropped to a fixed box. Use that for screenshots, where cropping
+ * would cut off the very numbers the image exists to show.
  */
 export default function Placeholder({
   src,
@@ -22,10 +26,13 @@ export default function Placeholder({
 }) {
   const [failed, setFailed] = useState(false);
 
+  // aspect={null} means "keep the image's own shape".
+  const natural = aspect === null;
+
   return (
     <div
       className={`relative overflow-hidden rounded-card border border-line bg-surface ${className}`}
-      style={{ aspectRatio: aspect }}
+      style={natural ? { minHeight: failed || !src ? "12rem" : undefined } : { aspectRatio: aspect }}
     >
       {!failed && src ? (
         <>
@@ -34,7 +41,11 @@ export default function Placeholder({
             alt={alt}
             loading="lazy"
             onError={() => setFailed(true)}
-            className={`h-full w-full object-cover ${imgClassName}`}
+            className={
+              natural
+                ? `block h-auto w-full ${imgClassName}`
+                : `h-full w-full object-cover ${imgClassName}`
+            }
           />
           {overlay}
         </>

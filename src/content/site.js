@@ -164,18 +164,47 @@ export const site = {
   proof: {
     eyebrow: "Receipts",
     title: "The Proof, Not The Promises",
-    subtitle: "Real dashboards, real revenue, real messages from the brands we run.",
+    subtitle: "Real dashboards, real revenue, real accounts we run.",
+    /* Real client screenshots. Captions state only what the screenshot
+       itself shows, so nothing here overstates a result. Add or remove
+       entries freely; the grid reflows on its own.                          */
     items: [
-      { image: "/assets/proof/proof-01.jpg", caption: "Shopify revenue" },
-      { image: "/assets/proof/proof-02.jpg", caption: "Meta Ads Manager" },
-      { image: "/assets/proof/proof-03.jpg", caption: "Klaviyo flows" },
-      { image: "/assets/proof/proof-04.jpg", caption: "Client message" },
-      { image: "/assets/proof/proof-05.jpg", caption: "Drop day" },
-      { image: "/assets/proof/proof-06.jpg", caption: "ROAS at scale" },
-      { image: "/assets/proof/proof-07.jpg", caption: "Store sessions" },
-      { image: "/assets/proof/proof-08.jpg", caption: "SMS campaign" },
-      { image: "/assets/proof/proof-09.jpg", caption: "Repeat customers" },
-      { image: "/assets/proof/proof-10.jpg", caption: "Best month yet" },
+      {
+        image: "/assets/proof/proof-01-merlin-revenue.png",
+        caption: "Merlin's Father · $746K tracked revenue, up 123% year over year",
+      },
+      {
+        image: "/assets/proof/proof-02-merlin-roas.png",
+        caption: "Merlin's Father · 6.41x average ROAS across 26 campaigns",
+      },
+      {
+        image: "/assets/proof/proof-03-timeatell-revenue.png",
+        caption: "Time A Tell · $160K in 90 days, up 96%",
+      },
+      {
+        image: "/assets/proof/proof-04-timeatell-roas.png",
+        caption: "Time A Tell · 4.32x average ROAS, 707 purchases",
+      },
+      {
+        image: "/assets/proof/proof-05-gastavi-revenue.png",
+        caption: "Gastavi · $20.3K in six weeks",
+      },
+      {
+        image: "/assets/proof/proof-06-sevenn-revenue.png",
+        caption: "SEVENN · $17.8K in seven weeks, up 59%",
+      },
+      {
+        image: "/assets/proof/proof-07-enchanted-revenue.png",
+        caption: "Enchanted Nail Supply · up 278% on total sales",
+      },
+      {
+        image: "/assets/proof/proof-08-bailout-roas.png",
+        caption: "Bailout · 3.59x ROAS on the first test campaign",
+      },
+      {
+        image: "/assets/proof/proof-09-karbon-creative.jpg",
+        caption: "Karbon Footprint · campaign creative",
+      },
     ],
   },
 

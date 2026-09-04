@@ -7,10 +7,10 @@ name matches what's listed there, it just appears.
 Anything missing renders as a labeled placeholder box instead of breaking, so
 you can add files one at a time.
 
-**Every folder except `proof/` is already populated with branded placeholder
-images.** They are clearly stamped PLACEHOLDER so none of them can be mistaken
-for real client work. Overwrite them with the real files, keeping the same
-names, and nothing else needs to change.
+`proof/` holds **real client screenshots**. Every other folder is populated
+with branded placeholder images, clearly stamped PLACEHOLDER so none of them
+can be mistaken for real client work. Overwrite them with the real files,
+keeping the same names, and nothing else needs to change.
 
 ---
 
@@ -81,21 +81,21 @@ screen size.
 
 ## `proof/`
 
-The social-proof wall — Shopify revenue graphs, Meta Ads Manager dashboards,
-Klaviyo screenshots, client messages, happy customers. Listed in `site.js`
-under `proof.items`.
+The social-proof wall. Listed in `site.js` under `proof.items`.
 
-| File | Used for |
-| --- | --- |
-| `proof-01.jpg` … `proof-10.jpg` | The proof grid |
+**Populated with real client screenshots** (Merlin's Father, Time A Tell,
+Gastavi, SEVENN, Enchanted Nail Supply, Bailout, Karbon Footprint).
 
-**Size:** anything. Tiles are square and images are center-cropped to fill, so
-a wide dashboard screenshot and a tall phone screenshot both sit in the grid
-without distorting. If a screenshot has important detail near an edge, crop it
-closer to square yourself first so the center crop doesn't cut it off.
+**Size:** anything. Images keep their own proportions here rather than being
+cropped to a box, because these are screenshots whose whole point is the
+numbers in them. A square crop would cut the revenue breakdown off the right
+edge. The grid is a masonry column layout, so mixed heights pack fine.
 
-Add or remove entries in the `proof.items` array — the grid reflows on its own.
-Each item takes an optional `caption`; omit it for a clean tile.
+Very tall images are capped at 30rem and cropped from the top, so one portrait
+shot can't tower over the dashboards around it.
+
+Each item takes an optional `caption`, shown under the image. Keep captions to
+what the screenshot actually shows.
 
 ## `og/`
 
