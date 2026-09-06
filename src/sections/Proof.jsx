@@ -29,25 +29,16 @@ export default function Proof() {
               delay={Math.min(index, 5) * 70}
               className="group mb-4 break-inside-avoid sm:mb-5"
             >
-              <figure className="overflow-hidden rounded-card border border-line bg-surface transition-colors duration-300 hover:border-accent/50">
+              {/* No caption bar: the dashboards carry their own numbers. */}
+              <div className="overflow-hidden rounded-card border border-line bg-surface transition-colors duration-300 hover:border-accent/50">
                 <Placeholder
                   src={item.image}
-                  alt={item.caption || "Client result"}
-                  label={item.caption || "Proof"}
+                  alt="Client dashboard"
+                  label="Dashboard"
                   aspect={null}
                   className="rounded-none border-0"
-                  // Wide dashboards land around 240px tall and never hit this
-                  // cap. It exists so a tall portrait shot can't balloon to
-                  // three times the height of everything around it.
-                  imgClassName="max-h-[30rem] object-cover object-top"
                 />
-
-                {item.caption && (
-                  <figcaption className="border-t border-line px-4 py-3 text-sm leading-snug text-muted">
-                    {item.caption}
-                  </figcaption>
-                )}
-              </figure>
+              </div>
             </Reveal>
           ))}
         </div>

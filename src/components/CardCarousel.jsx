@@ -18,10 +18,6 @@ import Placeholder from "./Placeholder";
  * true, pauses under the pointer, stops permanently as soon as the visitor
  * navigates, and never runs under prefers-reduced-motion.
  */
-// A portrait image gets a frame no taller than this. Without a floor, one
-// 9:16 phone screenshot would stretch the whole row of cards.
-const MIN_ASPECT = 0.75;
-
 export default function CardCarousel({
   slides,
   aspect = "4/3",
@@ -44,12 +40,9 @@ export default function CardCarousel({
     [count],
   );
 
-  // The frame takes the shape of whichever slide is showing, so each image
-  // fills it instead of floating in dead space. Only a portrait clamped by
-  // MIN_ASPECT is letterboxed, and that gets a blurred backdrop.
-  const slideAspect = slides[index].aspect;
-  const frameAspect = slideAspect ? Math.max(slideAspect, MIN_ASPECT) : aspect;
-  const clamped = Boolean(slideAspect) && slideAspect < MIN_ASPECT;
+  // The frame is one fixed shape for every slide in every card. Changing it
+  // per slide moved the copy underneath, so switching pills is now visually
+  // stable: only the picture inside the window changes.
 
   // Any deliberate navigation stops the auto-advance permanently, so the
   // carousel never yanks a slide away from someone driving it.
@@ -118,8 +111,8 @@ export default function CardCarousel({
     >
       {/* Image viewport */}
       <div
-        className="relative overflow-hidden transition-[aspect-ratio] duration-500 ease-out"
-        style={{ aspectRatio: frameAspect }}
+        className="relative overflow-hidden"
+        style={{ aspectRatio: aspect }}
         tabIndex={0}
         onKeyDown={onKeyDown}
         onTouchStart={onTouchStart}
@@ -144,13 +137,10 @@ export default function CardCarousel({
               src={slide.src}
               alt={slide.alt}
               label={slide.pill}
-              // The frame already matches the active slide, so every image is
-              // contained: it can never be cropped, whatever its shape.
-              aspect={null}
+              aspect={aspect}
               fit="contain"
-              backdrop={clamped}
-              className="h-full rounded-none border-0 bg-bg"
-              imgClassName="h-full w-full"
+              backdrop
+              className="rounded-none border-0 bg-bg"
             />
           </button>
         ))}

@@ -3,6 +3,7 @@ import { site } from "../content/site";
 import { CheckItem, Container, Section, SectionHeading } from "../components/ui";
 import CardCarousel from "../components/CardCarousel";
 import Reveal from "../components/Reveal";
+import ClientMessage from "../components/ClientMessage";
 
 function CaseStudyCard({ item, index, active }) {
   return (
@@ -29,8 +30,12 @@ function CaseStudyCard({ item, index, active }) {
           {item.headline}
         </h3>
 
-        {/* grow pushes the results list to the bottom so cards align */}
-        <p className="grow text-base leading-relaxed text-muted">{item.description}</p>
+        <p className="text-base leading-relaxed text-muted">{item.description}</p>
+
+        <ClientMessage message={item.message} />
+
+        {/* Spacer pushes the results list to the bottom so cards align. */}
+        <div className="grow" />
 
         <ul className="mt-1 flex flex-col gap-3 border-t border-line pt-5">
           {item.results.map((result) => (

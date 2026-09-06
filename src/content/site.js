@@ -68,13 +68,12 @@ export const site = {
      [PLACEHOLDER] — the headlines, descriptions and result figures below
      are invented and still need replacing with real ones.
 
-     Each card carries a four-slide carousel selected by pills under the
-     image: Founder, Shopify, SMS or Ads, then a Message from the client.
+     Each card carries a three-slide carousel selected by pills under the
+     image: Founder, Shopify, then SMS or Ads. `pill` is the button label.
 
-     `pill` is the button label. `aspect` is the image's own width/height;
-     the frame takes that shape so nothing is ever cropped and nothing sits
-     in dead letterbox space. Portraits are clamped by the carousel so one
-     tall screenshot cannot stretch the whole row.                           */
+     The client's message is separate. It lives under the description as a
+     peek that opens the full screenshot in the lightbox, because these are
+     tall phone screenshots and no landscape frame shows them well.          */
   caseStudies: {
     title: "Real Results From Real Brands",
     subtitle: "Brands that were stuck, now scaling profitably across every channel.",
@@ -100,13 +99,16 @@ export const site = {
             pill: "SMS",
             aspect: 2.033,
           },
-          {
-            src: "/assets/case-studies/client-one-message.webp",
-            alt: "Message from the founder",
-            pill: "Message",
-            aspect: 2.157,
-          },
         ],
+        // Sits under the description. A wide message is shown in full; a
+        // tall one is shown as a peek, since no card-width frame does a
+        // 9:16 screenshot justice. Either way it opens in the lightbox.
+        message: {
+          src: "/assets/case-studies/client-one-message.webp",
+          aspect: 2.157,
+          label: "Message from the founder",
+          quote: "\u201cI honestly don't know what to say\u2026 I'm now able to cover mum's treatment.\u201d",
+        },
         description:
           "A handbag brand with small SMS list. We grew it a lot, fixed the flows, and spent 2 weeks before the drop getting people excited. First hour beat her whole previous year.",
         results: [
@@ -136,13 +138,16 @@ export const site = {
             pill: "Ads",
             aspect: 1.978,
           },
-          {
-            src: "/assets/case-studies/client-two-message.webp",
-            alt: "Message from the founder",
-            pill: "Message",
-            aspect: 2.161,
-          },
         ],
+        // Sits under the description. A wide message is shown in full; a
+        // tall one is shown as a peek, since no card-width frame does a
+        // 9:16 screenshot justice. Either way it opens in the lightbox.
+        message: {
+          src: "/assets/case-studies/client-two-message.webp",
+          aspect: 2.161,
+          label: "Message from the founder",
+          quote: "\u201cbro i just checked the numbers wtf lol. my best month ever looks like nothing now.\u201d",
+        },
         description:
           "His best month ever was $1K. We rebuilt the ad account around a few angles, redesigned the site, and sharpened the offer. Month two just closed at $14,305.",
         results: [
@@ -172,13 +177,16 @@ export const site = {
             pill: "Ads",
             aspect: 1.957,
           },
-          {
-            src: "/assets/case-studies/client-three-message.webp",
-            alt: "Message from the founders",
-            pill: "Message",
-            aspect: 0.563,
-          },
         ],
+        // Sits under the description. A wide message is shown in full; a
+        // tall one is shown as a peek, since no card-width frame does a
+        // 9:16 screenshot justice. Either way it opens in the lightbox.
+        message: {
+          src: "/assets/case-studies/client-three-message.webp",
+          aspect: 0.563,
+          label: "Message from the founders",
+          quote: "\u201call this thanks to you guys, living the dream with my boy\u201d",
+        },
         description:
           "Two friends who went all in on this. We cleaned up the ad account, cut the dead spend, and got customers coming in at $16.59 a pop. They've been holding $74K months since.",
         results: [
@@ -203,50 +211,20 @@ export const site = {
     eyebrow: "Receipts",
     title: "The Proof, Not The Promises",
     subtitle: "Real dashboards, real revenue, real accounts we run.",
-    /* Real client screenshots. Captions state only what the screenshot
-       itself shows, and carry no client names, so nothing here overstates a
-       result or identifies a brand.
+    /* Raw client dashboards, kept at full resolution so the figures stay
+       legible. No captions: the screenshots speak for themselves.
 
-       ⚠️  The screenshots THEMSELVES still show store names and account
-       handles in the Shopify and Meta chrome. Blur those before launch if
-       the clients must stay anonymous.                                     */
+       ⚠️  The screenshots may show store names in the Shopify and Meta
+       chrome. Blur those before launch if clients must stay anonymous.     */
     items: [
-      {
-        image: "/assets/proof/proof-01-merlin-revenue.png",
-        caption: "$746K tracked revenue, up 123% year over year",
-      },
-      {
-        image: "/assets/proof/proof-02-merlin-roas.png",
-        caption: "6.41x average ROAS across 26 campaigns",
-      },
-      {
-        image: "/assets/proof/proof-03-timeatell-revenue.png",
-        caption: "$160K in 90 days, up 96%",
-      },
-      {
-        image: "/assets/proof/proof-04-timeatell-roas.png",
-        caption: "4.32x average ROAS, 707 purchases",
-      },
-      {
-        image: "/assets/proof/proof-05-gastavi-revenue.png",
-        caption: "$20.3K in six weeks",
-      },
-      {
-        image: "/assets/proof/proof-06-sevenn-revenue.png",
-        caption: "$17.8K in seven weeks, up 59%",
-      },
-      {
-        image: "/assets/proof/proof-07-enchanted-revenue.png",
-        caption: "Up 278% on total sales",
-      },
-      {
-        image: "/assets/proof/proof-08-bailout-roas.png",
-        caption: "3.59x ROAS on the first test campaign",
-      },
-      {
-        image: "/assets/proof/proof-09-karbon-creative.jpg",
-        caption: "Campaign creative",
-      },
+      { image: "/assets/proof/proof-01.webp" },
+      { image: "/assets/proof/proof-02.webp" },
+      { image: "/assets/proof/proof-03.webp" },
+      { image: "/assets/proof/proof-04.webp" },
+      { image: "/assets/proof/proof-05.webp" },
+      { image: "/assets/proof/proof-06.webp" },
+      { image: "/assets/proof/proof-07.webp" },
+      { image: "/assets/proof/proof-08.webp" },
     ],
   },
 
