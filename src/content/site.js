@@ -362,8 +362,12 @@ export const site = {
   /* ------------------------------------------------------------------- WHY */
   why: {
     eyebrow: "Why Salano",
-    title: "Tired Of Agencies That Don't Deliver?",
-    subtitle: "No VAs on your account. No guesswork. Real strategy, real operators.",
+    title: "Tired Of Agencies? You Should Be.",
+    // An array renders as separate paragraphs.
+    subtitle: [
+      "Most sell you a strategist and hand you a VA that can't make it happen.",
+      "Here, you will get three in-house specialists dedicated to your growth.",
+    ],
     pillars: [
       {
         title: "Done-For-You Growth",

@@ -86,9 +86,13 @@ export function SectionHeading({ eyebrow, title, subtitle, align = "left", class
     <div className={`flex flex-col ${alignment} gap-5 ${className}`}>
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
       <h2 className="max-w-3xl text-section text-balance">{title}</h2>
-      {subtitle && (
-        <p className="max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">{subtitle}</p>
-      )}
+      {subtitle &&
+        // A subtitle may be a string or an array of paragraphs.
+        (Array.isArray(subtitle) ? subtitle : [subtitle]).map((para) => (
+          <p key={para} className="max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
+            {para}
+          </p>
+        ))}
     </div>
   );
 }

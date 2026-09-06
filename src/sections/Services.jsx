@@ -26,7 +26,9 @@ export default function Services() {
                 <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-card border border-line bg-bg text-accent transition-colors duration-300 group-hover:border-accent/50">
                   <ServiceIcon name={item.icon} className="h-6 w-6" />
                 </span>
-                <div>
+                {/* Number and title share a line, baseline aligned, rather
+                    than the number sitting on a line of its own. */}
+                <div className="flex items-baseline gap-2.5">
                   <span className="font-display text-xs font-bold tracking-[0.18em] text-faint">
                     {item.number}
                   </span>

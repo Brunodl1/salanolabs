@@ -30,12 +30,15 @@ export default function Process() {
                 className="relative h-[18px] w-[18px] rounded-full border-2 border-accent bg-bg"
               />
 
-              <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent">
-                {step.step}
-              </p>
-              <h3 className="font-display text-xl font-bold tracking-tight text-balance">
-                {step.title}
-              </h3>
+              {/* Step label and title share a line, baseline aligned. */}
+              <div className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+                <p className="font-display text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+                  {step.step}
+                </p>
+                <h3 className="font-display text-xl font-bold tracking-tight text-balance">
+                  {step.title}
+                </h3>
+              </div>
               <p className="text-base leading-relaxed text-muted">{step.description}</p>
             </Reveal>
           ))}
