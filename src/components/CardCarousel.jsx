@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Placeholder from "./Placeholder";
 
 /**
@@ -10,9 +10,27 @@ import Placeholder from "./Placeholder";
  *
  * Navigation: arrows on hover or focus, dots always, plus arrow keys and
  * horizontal swipe on touch.
+ *
+ * Auto-advance: when `active` is true, the carousel moves forward ONCE after
+ * `startDelay`, then stops for good. It never wraps back on its own, so a
+ * card that has turned over to the proof stays on the proof. Only a click,
+ * key or swipe can move it back.
+ *
+ * Staggering `startDelay` across a row of cards makes them turn over as a
+ * wave rather than in lockstep. The timer only runs while `active` is true,
+ * pauses under the pointer, and never runs under prefers-reduced-motion.
  */
-export default function CardCarousel({ slides, aspect = "4/3", label = "Images" }) {
+export default function CardCarousel({
+  slides,
+  aspect = "4/3",
+  label = "Images",
+  active = false,
+  startDelay = 3000,
+}) {
   const [index, setIndex] = useState(0);
+  const [taken, setTaken] = useState(false); // visitor took control
+  const [autoDone, setAutoDone] = useState(false); // the one auto-advance fired
+  const [hovered, setHovered] = useState(false);
   const count = slides.length;
 
   const go = useCallback(
@@ -20,23 +38,47 @@ export default function CardCarousel({ slides, aspect = "4/3", label = "Images" 
     [count],
   );
 
+  // Any deliberate navigation stops the auto-advance permanently, so the
+  // carousel never yanks a slide away from someone driving it.
+  const take = useCallback(
+    (next) => {
+      setTaken(true);
+      go(next);
+    },
+    [go],
+  );
+
+  useEffect(() => {
+    // Only runs while the card is on screen, and only until it has fired.
+    if (!active || taken || autoDone || hovered || count < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = setTimeout(() => {
+      // Forward only, clamped to the last slide, so it never wraps around.
+      setIndex((i) => Math.min(i + 1, count - 1));
+      setAutoDone(true);
+    }, startDelay);
+
+    return () => clearTimeout(timer);
+  }, [active, taken, autoDone, hovered, count, startDelay]);
+
   // Swipe handling. We only act on a decisive horizontal drag.
   const [touchX, setTouchX] = useState(null);
   const onTouchStart = (e) => setTouchX(e.touches[0].clientX);
   const onTouchEnd = (e) => {
     if (touchX === null) return;
     const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 40) go(index + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 40) take(index + (dx < 0 ? 1 : -1));
     setTouchX(null);
   };
 
   const onKeyDown = (e) => {
     if (e.key === "ArrowRight") {
       e.preventDefault();
-      go(index + 1);
+      take(index + 1);
     } else if (e.key === "ArrowLeft") {
       e.preventDefault();
-      go(index - 1);
+      take(index - 1);
     }
   };
 
@@ -50,6 +92,8 @@ export default function CardCarousel({ slides, aspect = "4/3", label = "Images" 
       onKeyDown={onKeyDown}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       {/* Slide track */}
       <div
@@ -91,12 +135,12 @@ export default function CardCarousel({ slides, aspect = "4/3", label = "Images" 
         <>
           <CarouselArrow
             direction="prev"
-            onClick={() => go(index - 1)}
+            onClick={() => take(index - 1)}
             label={`Previous image, ${label}`}
           />
           <CarouselArrow
             direction="next"
-            onClick={() => go(index + 1)}
+            onClick={() => take(index + 1)}
             label={`Next image, ${label}`}
           />
         </>
@@ -109,7 +153,7 @@ export default function CardCarousel({ slides, aspect = "4/3", label = "Images" 
             <button
               key={slide.src}
               type="button"
-              onClick={() => go(i)}
+              onClick={() => take(i)}
               aria-label={`Show ${slide.label}`}
               aria-current={i === index}
               className={`h-1.5 rounded-pill transition-all duration-300 ${

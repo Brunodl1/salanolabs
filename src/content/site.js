@@ -62,25 +62,25 @@ export const site = {
   ],
 
   /* ----------------------------------------------------------- CASE STUDIES
-     [PLACEHOLDER] — every brand, number and quote below is invented.
+     Clients are kept anonymous: no brand name, no social handle. Only the
+     result, the story and the numbers.
+
+     [PLACEHOLDER] — the headlines, descriptions and result figures below
+     are invented and still need replacing with real ones.
 
      Each card carries a two-slide carousel: `slides[0]` is the person and
-     `slides[1]` is the proof (a revenue graph, dashboard, or screenshot).
-     Replace both files in public/assets/case-studies/.                      */
+     `slides[1]` is the proof (a revenue graph, dashboard, or screenshot).   */
   caseStudies: {
     title: "Real Results From Real Brands",
     subtitle: "Brands that were stuck, now scaling profitably across every channel.",
     items: [
       {
-        brand: "[CLIENT ONE]",
         headline: "$53,000 On Drop Day",
-        handle: "@clientone",
-        handleUrl: "#",
         // Two slides per card: the person, then the proof.
         slides: [
           {
-            src: "/assets/case-studies/client-one-person.jpg",
-            alt: "[PLACEHOLDER] founder photo",
+            src: "/assets/case-studies/client-one-person.webp",
+            alt: "Founder photo",
             label: "The founder",
           },
           {
@@ -98,15 +98,12 @@ export const site = {
         ],
       },
       {
-        brand: "[CLIENT TWO]",
         headline: "$100k+ In The First 90 Days",
-        handle: "@clienttwo",
-        handleUrl: "#",
         // Two slides per card: the person, then the proof.
         slides: [
           {
-            src: "/assets/case-studies/client-two-person.jpg",
-            alt: "[PLACEHOLDER] founder photo",
+            src: "/assets/case-studies/client-two-person.webp",
+            alt: "Founder photo",
             label: "The founder",
           },
           {
@@ -124,15 +121,12 @@ export const site = {
         ],
       },
       {
-        brand: "[CLIENT THREE]",
         headline: "$61k In 35 Days",
-        handle: "@clientthree",
-        handleUrl: "#",
         // Two slides per card: the person, then the proof.
         slides: [
           {
-            src: "/assets/case-studies/client-three-person.jpg",
-            alt: "[PLACEHOLDER] founder photo",
+            src: "/assets/case-studies/client-three-person.webp",
+            alt: "Founders on shipping day",
             label: "The founder",
           },
           {
@@ -166,44 +160,48 @@ export const site = {
     title: "The Proof, Not The Promises",
     subtitle: "Real dashboards, real revenue, real accounts we run.",
     /* Real client screenshots. Captions state only what the screenshot
-       itself shows, so nothing here overstates a result. Add or remove
-       entries freely; the grid reflows on its own.                          */
+       itself shows, and carry no client names, so nothing here overstates a
+       result or identifies a brand.
+
+       ⚠️  The screenshots THEMSELVES still show store names and account
+       handles in the Shopify and Meta chrome. Blur those before launch if
+       the clients must stay anonymous.                                     */
     items: [
       {
         image: "/assets/proof/proof-01-merlin-revenue.png",
-        caption: "Merlin's Father · $746K tracked revenue, up 123% year over year",
+        caption: "$746K tracked revenue, up 123% year over year",
       },
       {
         image: "/assets/proof/proof-02-merlin-roas.png",
-        caption: "Merlin's Father · 6.41x average ROAS across 26 campaigns",
+        caption: "6.41x average ROAS across 26 campaigns",
       },
       {
         image: "/assets/proof/proof-03-timeatell-revenue.png",
-        caption: "Time A Tell · $160K in 90 days, up 96%",
+        caption: "$160K in 90 days, up 96%",
       },
       {
         image: "/assets/proof/proof-04-timeatell-roas.png",
-        caption: "Time A Tell · 4.32x average ROAS, 707 purchases",
+        caption: "4.32x average ROAS, 707 purchases",
       },
       {
         image: "/assets/proof/proof-05-gastavi-revenue.png",
-        caption: "Gastavi · $20.3K in six weeks",
+        caption: "$20.3K in six weeks",
       },
       {
         image: "/assets/proof/proof-06-sevenn-revenue.png",
-        caption: "SEVENN · $17.8K in seven weeks, up 59%",
+        caption: "$17.8K in seven weeks, up 59%",
       },
       {
         image: "/assets/proof/proof-07-enchanted-revenue.png",
-        caption: "Enchanted Nail Supply · up 278% on total sales",
+        caption: "Up 278% on total sales",
       },
       {
         image: "/assets/proof/proof-08-bailout-roas.png",
-        caption: "Bailout · 3.59x ROAS on the first test campaign",
+        caption: "3.59x ROAS on the first test campaign",
       },
       {
         image: "/assets/proof/proof-09-karbon-creative.jpg",
-        caption: "Karbon Footprint · campaign creative",
+        caption: "Campaign creative",
       },
     ],
   },
@@ -222,22 +220,22 @@ export const site = {
        The columns scroll in opposite directions at different speeds, and
        each one loops its own list, so they do not need to be equal length.
        Add or remove paths freely.                                          */
-    // beach-club and street-portrait are kept in separate columns, and at
-    // offset positions within them, so they never sit side by side.
+    // full-house and shipping-day are both "packed orders everywhere" shots,
+    // so they sit in different columns rather than near each other.
     columnOne: [
       "/assets/hero/beach-club.webp",
       "/assets/hero/desert-quad.webp",
+      "/assets/hero/full-house.webp",
       "/assets/hero/muscle-car.webp",
       "/assets/hero/hotel-mirror.webp",
       "/assets/hero/skyline-pool.webp",
-      "/assets/hero/kyoto-temple.webp",
     ],
     columnTwo: [
       "/assets/hero/pyramids.webp",
       "/assets/hero/rooftop-lunch.webp",
-      "/assets/hero/street-portrait.webp",
+      "/assets/hero/shipping-day.webp",
       "/assets/hero/snowboard-alps.webp",
-      "/assets/hero/gas-station-night.webp",
+      "/assets/hero/kyoto-temple.webp",
     ],
   },
 
@@ -383,15 +381,22 @@ export const site = {
   },
 
   /* --------------------------------------------------------- BRAND LOGO ROW
-     Small logos in the "trusted by" strip under the hero.
-     [PLACEHOLDER] — these are invented brand names. Replace the files in
-     public/assets/brands/ and the names here with real clients.              */
+     Client logos in the "trusted by" strip under the hero.
+
+     `heightClass` sets each logo's height individually. Logos are balanced
+     optically, not to one uniform height: a near-square mark like Paw
+     Origins needs to sit taller than a long lockup like Sasillia to read at
+     the same visual weight. Adjust these if you swap a file.               */
   brandLogos: [
-    { name: "NORTHSIDE", image: "/assets/brands/brand-1.png" },
-    { name: "ATELIER 9", image: "/assets/brands/brand-2.png" },
-    { name: "VANTA CO", image: "/assets/brands/brand-3.png" },
-    { name: "RUNWELL", image: "/assets/brands/brand-4.png" },
-    { name: "OKAPI", image: "/assets/brands/brand-5.png" },
+    { name: "Diet Smoke", image: "/assets/brands/diet-smoke.svg", heightClass: "h-7 sm:h-8" },
+    { name: "Escape", image: "/assets/brands/escape.svg", heightClass: "h-4 sm:h-5" },
+    { name: "Paw Origins", image: "/assets/brands/paw-origins.png", heightClass: "h-9 sm:h-10" },
+    {
+      name: "Centurion Labz",
+      image: "/assets/brands/centurion-labz.png",
+      heightClass: "h-5 sm:h-6",
+    },
+    { name: "Sasillia", image: "/assets/brands/sasillia.png", heightClass: "h-3.5 sm:h-4" },
   ],
 };
 

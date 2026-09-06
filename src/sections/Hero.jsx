@@ -132,7 +132,7 @@ export default function Hero() {
                   <img
                     src={brand.image}
                     alt={brand.name}
-                    className="h-6 w-auto opacity-80 grayscale transition sm:h-7"
+                    className={`${brand.heightClass} w-auto opacity-80 grayscale transition`}
                     onError={(e) => {
                       // No file yet — fall back to the brand name as text.
                       e.currentTarget.replaceWith(
