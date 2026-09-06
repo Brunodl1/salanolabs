@@ -12,7 +12,12 @@ const WIDGET_SRC = "https://assets.calendly.com/assets/external/widget.js";
  * Colors are passed to Calendly as query params so the iframe renders dark
  * instead of flashing a white panel in the middle of a black page.
  */
-export default function CalendlyEmbed({ url, className = "h-[1180px] sm:h-[900px]" }) {
+// Calendly needs an explicit height: the widget emits no resize messages,
+// so the frame cannot size itself to the content. These are measured from
+// the booking page's tallest state at each width (830px at 390 wide, 885px
+// at 768), plus headroom for the booking form step. Too small and the
+// widget scrolls inside itself; too large and the card ends in dead space.
+export default function CalendlyEmbed({ url, className = "h-[880px] sm:h-[900px]" }) {
   const container = useRef(null);
   const [failed, setFailed] = useState(false);
 
