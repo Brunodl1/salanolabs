@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 /**
@@ -10,6 +10,7 @@ import { createPortal } from "react-dom";
  */
 export default function Lightbox({ slides, index, onClose, onPrev, onNext }) {
   const closeRef = useRef(null);
+  const [panHint, setPanHint] = useState(false);
   const slide = slides[index];
 
   useEffect(() => {
@@ -31,6 +32,17 @@ export default function Lightbox({ slides, index, onClose, onPrev, onNext }) {
       document.body.style.overflow = previous;
     };
   }, [onClose, onPrev, onNext]);
+
+  // The image is laid out at 78vh tall; if that makes it wider than the
+  // screen, it can be panned and the hint is worth showing.
+  useEffect(() => {
+    const img = new Image();
+    img.onload = () => {
+      const ratio = img.naturalWidth / img.naturalHeight;
+      setPanHint(ratio * window.innerHeight * 0.78 > window.innerWidth);
+    };
+    img.src = slide.src;
+  }, [slide.src]);
 
   return createPortal(
     <div
@@ -60,17 +72,34 @@ export default function Lightbox({ slides, index, onClose, onPrev, onNext }) {
       )}
 
       {/* Stop clicks on the figure itself from closing the overlay. */}
-      <figure onClick={(e) => e.stopPropagation()} className="flex max-h-full flex-col items-center gap-4">
-        <img
-          src={slide.src}
-          alt={slide.alt}
-          className="max-h-[80vh] w-auto max-w-full rounded-card object-contain"
-        />
-        {slide.pill && (
-          <figcaption className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-muted">
-            {slide.pill}
-          </figcaption>
-        )}
+      <figure
+        onClick={(e) => e.stopPropagation()}
+        className="flex max-h-full min-w-0 flex-col items-center gap-4"
+      >
+        {/* Pans horizontally when the image is wider than the screen. A wide
+            dashboard capped to the width of a phone is unreadable: sizing it
+            to the height instead makes the figures legible, and this scrolls
+            across it. On sm and up it fits the width, so nothing pans. */}
+        <div className="max-w-full overflow-x-auto overscroll-contain [scrollbar-width:thin]">
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            className="max-h-[78vh] w-auto max-w-none rounded-card object-contain sm:max-w-full"
+          />
+        </div>
+
+        <figcaption className="flex items-center gap-3 text-center">
+          {slide.pill && (
+            <span className="font-display text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+              {slide.pill}
+            </span>
+          )}
+          {panHint && (
+            <span className="font-display text-xs font-medium tracking-tight text-faint sm:hidden">
+              Drag to pan
+            </span>
+          )}
+        </figcaption>
       </figure>
     </div>,
     document.body,
