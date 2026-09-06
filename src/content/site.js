@@ -79,7 +79,7 @@ export const site = {
     subtitle: "Brands that were stuck, now scaling profitably across every channel.",
     items: [
       {
-        headline: "$75,992 On Drop Day",
+        headline: "$76K On Drop Day",
         slides: [
           {
             src: "/assets/case-studies/client-one-person.webp",
@@ -101,11 +101,11 @@ export const site = {
           },
         ],
         description:
-          "A women's handbag brand with no SMS list. We built it from scratch, rebuilt the automation flows, and ran a full week of pre-drop anticipation so demand was stacked before launch. Their next drop did more in an hour than the previous month.",
+          "A handbag brand with small SMS list. We grew it a lot, fixed the flows, and spent 2 weeks before the drop getting people excited. First hour beat her whole previous year.",
         results: [
-          "Nearly 50% of drop revenue driven by SMS",
-          "26,672 messages sent at 59.2x ROI",
-          "$75,992 in a single day, most of it before noon",
+          "$76K in a day",
+          "SMS drove 89% of drop-day revenue",
+          "26,672 sms sent at 59.2x ROI",
         ],
       },
       {
