@@ -13,12 +13,14 @@ function CaseStudyCard({ item, index, active }) {
     >
       <CardCarousel
         slides={item.slides}
-        aspect="4/3"
+        // 16:10 sits between the founder photos and the ~2:1 screenshots, so
+        // the photos aren't over-cropped and the screenshots barely letterbox.
+        aspect="16/10"
         label={`Case study ${index + 1} images`}
-        active={active}
-        // 3s, then 6s, then 9s after the row appears: they turn over as a
-        // wave, each exactly once, and stay on the proof slide.
-        startDelay={3000 + index * 3000}
+        // Only the first card turns over on its own, once, 3s after the row
+        // appears. The other two wait for the visitor.
+        active={active && index === 0}
+        startDelay={3000}
       />
 
       <div className="flex flex-1 flex-col gap-5 p-6 sm:p-7">

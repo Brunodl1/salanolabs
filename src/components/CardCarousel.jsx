@@ -1,24 +1,22 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Lightbox from "./Lightbox";
 import Placeholder from "./Placeholder";
 
 /**
  * A small image carousel for the case study cards.
  *
- * Built for two slides (the person, then the proof) but works with any
- * number. All slides sit in a flex track that slides horizontally, so every
- * image stays mounted and there's no flash when switching.
+ * Slides are chosen by named pills underneath (Founder / Shopify / Ads).
+ * They all sit in a flex track that slides horizontally, so every image
+ * stays mounted and there's no flash when switching.
  *
- * Navigation: arrows on hover or focus, dots always, plus arrow keys and
- * horizontal swipe on touch.
+ * Navigation: the pills, arrows on hover or focus, arrow keys, and
+ * horizontal swipe on touch. Clicking the image opens it in a lightbox.
  *
  * Auto-advance: when `active` is true, the carousel moves forward ONCE after
  * `startDelay`, then stops for good. It never wraps back on its own, so a
- * card that has turned over to the proof stays on the proof. Only a click,
- * key or swipe can move it back.
- *
- * Staggering `startDelay` across a row of cards makes them turn over as a
- * wave rather than in lockstep. The timer only runs while `active` is true,
- * pauses under the pointer, and never runs under prefers-reduced-motion.
+ * card that has turned over stays put. The timer only runs while `active` is
+ * true, pauses under the pointer, stops permanently as soon as the visitor
+ * navigates, and never runs under prefers-reduced-motion.
  */
 export default function CardCarousel({
   slides,
@@ -31,6 +29,10 @@ export default function CardCarousel({
   const [taken, setTaken] = useState(false); // visitor took control
   const [autoDone, setAutoDone] = useState(false); // the one auto-advance fired
   const [hovered, setHovered] = useState(false);
+  const [zoomed, setZoomed] = useState(false);
+  // A swipe also fires a click afterwards; this keeps that from opening the
+  // lightbox when the visitor meant to change slide.
+  const swiped = useRef(false);
   const count = slides.length;
 
   const go = useCallback(
@@ -68,8 +70,20 @@ export default function CardCarousel({
   const onTouchEnd = (e) => {
     if (touchX === null) return;
     const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 40) take(index + (dx < 0 ? 1 : -1));
+    if (Math.abs(dx) > 40) {
+      swiped.current = true;
+      take(index + (dx < 0 ? 1 : -1));
+    }
     setTouchX(null);
+  };
+
+  const openZoom = () => {
+    if (swiped.current) {
+      swiped.current = false; // that gesture was a swipe, not a tap
+      return;
+    }
+    setTaken(true); // opening the viewer counts as taking control
+    setZoomed(true);
   };
 
   const onKeyDown = (e) => {
@@ -84,50 +98,48 @@ export default function CardCarousel({
 
   return (
     <div
-      className="group/carousel relative overflow-hidden border-b border-line"
+      className="group/carousel"
       role="group"
       aria-roledescription="carousel"
       aria-label={label}
-      tabIndex={0}
-      onKeyDown={onKeyDown}
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      {/* Image viewport */}
+      <div
+        className="relative overflow-hidden"
+        tabIndex={0}
+        onKeyDown={onKeyDown}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
       {/* Slide track */}
       <div
         className="flex transition-transform duration-500 ease-out"
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
         {slides.map((slide, i) => (
-          <div
+          <button
             key={slide.src}
-            className="w-full shrink-0"
+            type="button"
+            onClick={openZoom}
+            tabIndex={i === index ? 0 : -1}
+            aria-label={`Enlarge ${slide.pill || "image"}`}
+            className="w-full shrink-0 cursor-zoom-in"
             aria-hidden={i !== index}
           >
             <Placeholder
               src={slide.src}
               alt={slide.alt}
-              label={slide.label}
+              label={slide.pill}
               aspect={aspect}
-              className="rounded-none border-0"
+              fit={slide.fit}
+              // Contained screenshots letterbox, so sit them on the deeper
+              // page black rather than the lighter card surface.
+              className={`rounded-none border-0 ${slide.fit === "contain" ? "bg-bg" : ""}`}
             />
-          </div>
+          </button>
         ))}
-      </div>
-
-      {/* Current slide's label */}
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 p-4"
-        style={{
-          background:
-            "linear-gradient(to bottom, color-mix(in srgb, var(--color-bg) 85%, transparent), transparent)",
-        }}
-      >
-        <span className="font-display text-xs font-semibold uppercase tracking-[0.16em] text-white/90">
-          {slides[index].label}
-        </span>
       </div>
 
       {/* Arrows. Hidden until hover or keyboard focus, and never on touch-only. */}
@@ -145,25 +157,43 @@ export default function CardCarousel({
           />
         </>
       )}
+      </div>
 
-      {/* Dots */}
+      {/* Pills. These name what each slide shows, so the visitor picks a
+          view rather than guessing what an unlabelled dot leads to. */}
       {count > 1 && (
-        <div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 p-4">
+        <div
+          role="tablist"
+          aria-label={label}
+          className="flex flex-wrap items-center gap-2 border-y border-line bg-surface px-4 py-3"
+        >
           {slides.map((slide, i) => (
             <button
               key={slide.src}
               type="button"
+              role="tab"
+              aria-selected={i === index}
               onClick={() => take(i)}
-              aria-label={`Show ${slide.label}`}
-              aria-current={i === index}
-              className={`h-1.5 rounded-pill transition-all duration-300 ${
+              className={`rounded-pill px-3.5 py-1.5 font-display text-xs font-semibold tracking-tight transition-all duration-300 ${
                 i === index
-                  ? "w-6 bg-accent"
-                  : "w-1.5 bg-white/35 hover:bg-white/60"
+                  ? "bg-accent text-white"
+                  : "border border-line text-muted hover:border-accent/50 hover:text-text"
               }`}
-            />
+            >
+              {slide.pill}
+            </button>
           ))}
         </div>
+      )}
+
+      {zoomed && (
+        <Lightbox
+          slides={slides}
+          index={index}
+          onClose={() => setZoomed(false)}
+          onPrev={() => go(index - 1)}
+          onNext={() => go(index + 1)}
+        />
       )}
     </div>
   );

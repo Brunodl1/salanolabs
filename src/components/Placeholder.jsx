@@ -26,6 +26,9 @@ export default function Placeholder({
   // Set for images visible on first paint. Lazy-loading something that is
   // already on screen just delays it.
   priority = false,
+  // "cover" fills the frame and crops; "contain" fits the whole image in,
+  // letterboxed. Screenshots need "contain" so no figures are cut off.
+  fit = "cover",
 }) {
   const [failed, setFailed] = useState(false);
 
@@ -49,7 +52,7 @@ export default function Placeholder({
             className={
               natural
                 ? `block h-auto w-full ${imgClassName}`
-                : `h-full w-full object-cover ${imgClassName}`
+                : `h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} ${imgClassName}`
             }
           />
           {overlay}

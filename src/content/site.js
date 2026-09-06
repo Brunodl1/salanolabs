@@ -68,48 +68,66 @@ export const site = {
      [PLACEHOLDER] — the headlines, descriptions and result figures below
      are invented and still need replacing with real ones.
 
-     Each card carries a two-slide carousel: `slides[0]` is the person and
-     `slides[1]` is the proof (a revenue graph, dashboard, or screenshot).   */
+     Each card carries a three-slide carousel selected by pills under the
+     image: Founder, Shopify, then SMS or Ads depending on the client.
+
+     `pill` is the button label. `fit` is "cover" for photos, which should
+     fill the frame, and "contain" for screenshots, which must not be
+     cropped or the figures get cut off.                                     */
   caseStudies: {
     title: "Real Results From Real Brands",
     subtitle: "Brands that were stuck, now scaling profitably across every channel.",
     items: [
       {
-        headline: "$53,000 On Drop Day",
-        // Two slides per card: the person, then the proof.
+        headline: "$75,992 On Drop Day",
         slides: [
           {
             src: "/assets/case-studies/client-one-person.webp",
             alt: "Founder photo",
-            label: "The founder",
+            pill: "Founder",
+            fit: "cover",
           },
           {
-            src: "/assets/case-studies/client-one-result.jpg",
-            alt: "[PLACEHOLDER] result screenshot",
-            label: "The result",
+            src: "/assets/case-studies/client-one-shopify.webp",
+            alt: "Shopify revenue on drop day",
+            pill: "Shopify",
+            fit: "contain",
+          },
+          {
+            src: "/assets/case-studies/client-one-sms.webp",
+            alt: "SMS campaign results",
+            pill: "SMS",
+            fit: "contain",
           },
         ],
         description:
-          "Built the SMS list from scratch, rebuilt the automation flows, and sharpened the offer. Their next drop did more in an hour than the previous month.",
+          "A women's handbag brand with no SMS list. We built it from scratch, rebuilt the automation flows, and ran a full week of pre-drop anticipation so demand was stacked before launch. Their next drop did more in an hour than the previous month.",
         results: [
-          "$53K+ generated in under an hour",
-          "80% of drop revenue from SMS",
-          "Higher AOV and repeat purchase rate",
+          "Nearly 50% of drop revenue driven by SMS",
+          "26,672 messages sent at 59.2x ROI",
+          "$75,992 in a single day, most of it before noon",
         ],
       },
       {
         headline: "$100k+ In The First 90 Days",
-        // Two slides per card: the person, then the proof.
         slides: [
           {
             src: "/assets/case-studies/client-two-person.webp",
             alt: "Founder photo",
-            label: "The founder",
+            pill: "Founder",
+            fit: "cover",
           },
           {
-            src: "/assets/case-studies/client-two-result.jpg",
-            alt: "[PLACEHOLDER] result screenshot",
-            label: "The result",
+            src: "/assets/case-studies/client-two-shopify.webp",
+            alt: "Shopify revenue after 30 days",
+            pill: "Shopify",
+            fit: "contain",
+          },
+          {
+            src: "/assets/case-studies/client-two-ads.webp",
+            alt: "Ads manager results",
+            pill: "Ads",
+            fit: "contain",
           },
         ],
         description:
@@ -122,17 +140,24 @@ export const site = {
       },
       {
         headline: "$61k In 35 Days",
-        // Two slides per card: the person, then the proof.
         slides: [
           {
             src: "/assets/case-studies/client-three-person.webp",
             alt: "Founders on shipping day",
-            label: "The founder",
+            pill: "Founder",
+            fit: "cover",
           },
           {
-            src: "/assets/case-studies/client-three-result.jpg",
-            alt: "[PLACEHOLDER] result screenshot",
-            label: "The result",
+            src: "/assets/case-studies/client-three-shopify.webp",
+            alt: "Shopify dashboard",
+            pill: "Shopify",
+            fit: "contain",
+          },
+          {
+            src: "/assets/case-studies/client-three-ads.webp",
+            alt: "Ads manager results",
+            pill: "Ads",
+            fit: "contain",
           },
         ],
         description:
