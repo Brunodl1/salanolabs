@@ -109,7 +109,7 @@ export const site = {
         ],
       },
       {
-        headline: "$100k+ In The First 90 Days",
+        headline: "$1K Months To $14K Months",
         slides: [
           {
             src: "/assets/case-studies/client-two-person.webp",
@@ -131,11 +131,11 @@ export const site = {
           },
         ],
         description:
-          "They were living drop to drop with no predictable revenue. We rebuilt the funnel, restructured the ad account, and turned it into a system that prints profit between launches.",
+          "His best month ever was $1K. We rebuilt the ad account around a handful of angles, redesigned the whole website and offer, and scaled the winners. Month two just closed at $14,305.",
         results: [
-          "5.3x average ROAS",
-          "42% lower cost per purchase",
-          "$100k+ gross revenue in 90 days",
+          "106% growth month over month",
+          "Best campaign at 5.21 ROAS, $21 per purchase",
+          "$14,305 in the last 30 days",
         ],
       },
       {
