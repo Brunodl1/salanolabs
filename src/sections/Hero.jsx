@@ -83,7 +83,10 @@ export default function Hero() {
 
             <Reveal delay={160}>
               <p className="mt-7 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-                {hero.subhead} <span className="font-semibold text-text">{hero.kicker}</span>
+                {hero.subhead}
+                {hero.kicker && (
+                  <> <span className="font-semibold text-text">{hero.kicker}</span></>
+                )}
               </p>
             </Reveal>
 

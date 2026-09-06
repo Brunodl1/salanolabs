@@ -42,14 +42,18 @@ export const site = {
 
   /* ------------------------------------------------------------------- HERO */
   hero: {
-    eyebrow: "Trusted by growing e-commerce brands",
-    // Split across lines so you control where the headline breaks.
-    headline: ["Stuck Around", "$5k/Month?"],
+    eyebrow: "Shopify only · 4 brands per quarter",
+    // Split across lines so you control where the headline breaks. The
+    // second line is the one rendered in the accent colour.
+    // U+2060 word joiner after the en dash: invisible, but stops the
+    // number range breaking across two lines.
+    headline: ["Doing $1–⁠2k/Month?", "We Get You To $10k."],
     subhead:
-      "You proved the product sells. We build the ads, email, SMS and conversion systems that turn a few thousand a month into a real business.",
-    kicker: "Zero guesswork.",
+      "In-house team to help you scale to 10k/m while you relax. Most brands get there in under 30 days.",
+    // Optional bold tail on the subhead; empty means nothing is appended.
+    kicker: "",
     cta: "Apply For A Growth Audit",
-    ctaNote: "90-day engagement · Limited to 4 new brands per quarter",
+    ctaNote: "90 days · Half your fee back when we hit the number",
   },
 
   /* ------------------------------------------------------------------ STATS
@@ -338,13 +342,13 @@ export const site = {
         step: "Step 02",
         title: "Launch",
         description:
-          "Campaigns go live within two weeks. Flows are built, tracking is connected, first tests running.",
+          "Campaigns go live within two weeks. Flows are built, tracking is connected, first sale get in.",
       },
       {
         step: "Step 03",
         title: "The 90-Day Performance Period",
         description:
-          "Ninety days of active management against an agreed target, with direct access to the strategist running your account.",
+          "Ninety days of active management against an agreed target, with direct access to a dedicated team running your account.",
       },
       {
         step: "Step 04",
