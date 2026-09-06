@@ -109,7 +109,7 @@ export const site = {
         ],
       },
       {
-        headline: "$1K Months To $14K Months",
+        headline: "$1K To $14K Months",
         slides: [
           {
             src: "/assets/case-studies/client-two-person.webp",
@@ -131,10 +131,10 @@ export const site = {
           },
         ],
         description:
-          "His best month ever was $1K. We rebuilt the ad account around a handful of angles, redesigned the whole website and offer, and scaled the winners. Month two just closed at $14,305.",
+          "His best month ever was $1K. We rebuilt the ad account around a few angles, redesigned the site, and sharpened the offer. Month two just closed at $14,305.",
         results: [
           "106% growth month over month",
-          "Best campaign at 5.21 ROAS, $21 per purchase",
+          "5.21 ROAS on the top campaign",
           "$14,305 in the last 30 days",
         ],
       },
