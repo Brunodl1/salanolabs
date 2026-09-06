@@ -64,20 +64,20 @@ Add or remove entries in the `brandLogos` array to change how many show.
 
 ## `hero/`
 
-The two scrolling columns beside the hero headline on desktop. Listed in
-`site.js` under `heroGallery`.
+The two scrolling columns beside the hero headline. Listed in `site.js` under
+`heroGallery`.
 
-| File | Used for |
-| --- | --- |
-| `hero-01.jpg` … `hero-04.jpg` | Left column (scrolls up) |
-| `hero-05.jpg` … `hero-08.jpg` | Right column (scrolls down) |
+**Populated with real brand photography** (11 images), resized from ~7 MB PNGs
+to 800x1000 WebP: 77.6 MB down to 1.2 MB total, about 107 KB each.
 
-**Size:** portrait, 800×1000 (4:5), JPG or WebP. Brand photography, product
-shots or campaign creative work best. Keep the two columns the same length so
-the loop reads evenly — add or remove entries in `site.js` to change how many.
+**Size:** portrait, 800x1000 (4:5), WebP. The slots render around 200px wide,
+so 800px covers even a 3x display. To add your own, crop to 4:5, export WebP
+at quality ~82, and add the path to one of the two column arrays.
 
-Placeholder versions are already in place, and the columns show at every
-screen size.
+The columns scroll in opposite directions at different speeds and each loops
+its own list, so they do not need to be the same length. The first two images
+in each column load eagerly, since they are on screen at first paint; the rest
+are lazy.
 
 ## `proof/`
 

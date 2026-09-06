@@ -25,6 +25,8 @@ function MarqueeColumn({ images, duration, reverse = false, offset = false }) {
             label="Brand image"
             aspect="4/5"
             className="shrink-0"
+            // The first couple in each column are on screen at first paint.
+            priority={i < 2}
           />
         ))}
       </div>

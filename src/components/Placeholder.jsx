@@ -23,6 +23,9 @@ export default function Placeholder({
   // Rendered on top of the image, but ONLY once a real file has loaded.
   // Keeps captions from doubling up with the placeholder's own label.
   overlay = null,
+  // Set for images visible on first paint. Lazy-loading something that is
+  // already on screen just delays it.
+  priority = false,
 }) {
   const [failed, setFailed] = useState(false);
 
@@ -39,7 +42,9 @@ export default function Placeholder({
           <img
             src={src}
             alt={alt}
-            loading="lazy"
+            loading={priority ? "eager" : "lazy"}
+            fetchPriority={priority ? "high" : undefined}
+            decoding="async"
             onError={() => setFailed(true)}
             className={
               natural

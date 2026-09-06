@@ -216,17 +216,28 @@ export const site = {
      Portrait crops (4:5) work best — brand photography, product shots,
      campaign creative.                                                     */
   heroGallery: {
+    /* The two scrolling columns beside the hero headline.
+
+       Real brand photography, resized to 800x1000 WebP for fast loading.
+       The columns scroll in opposite directions at different speeds, and
+       each one loops its own list, so they do not need to be equal length.
+       Add or remove paths freely.                                          */
+    // beach-club and street-portrait are kept in separate columns, and at
+    // offset positions within them, so they never sit side by side.
     columnOne: [
-      "/assets/hero/hero-01.jpg",
-      "/assets/hero/hero-02.jpg",
-      "/assets/hero/hero-03.jpg",
-      "/assets/hero/hero-04.jpg",
+      "/assets/hero/beach-club.webp",
+      "/assets/hero/desert-quad.webp",
+      "/assets/hero/muscle-car.webp",
+      "/assets/hero/hotel-mirror.webp",
+      "/assets/hero/skyline-pool.webp",
+      "/assets/hero/kyoto-temple.webp",
     ],
     columnTwo: [
-      "/assets/hero/hero-05.jpg",
-      "/assets/hero/hero-06.jpg",
-      "/assets/hero/hero-07.jpg",
-      "/assets/hero/hero-08.jpg",
+      "/assets/hero/pyramids.webp",
+      "/assets/hero/rooftop-lunch.webp",
+      "/assets/hero/street-portrait.webp",
+      "/assets/hero/snowboard-alps.webp",
+      "/assets/hero/gas-station-night.webp",
     ],
   },
 
