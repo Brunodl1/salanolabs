@@ -68,12 +68,13 @@ export const site = {
      [PLACEHOLDER] — the headlines, descriptions and result figures below
      are invented and still need replacing with real ones.
 
-     Each card carries a three-slide carousel selected by pills under the
-     image: Founder, Shopify, then SMS or Ads depending on the client.
+     Each card carries a four-slide carousel selected by pills under the
+     image: Founder, Shopify, SMS or Ads, then a Message from the client.
 
-     `pill` is the button label. `fit` is "cover" for photos, which should
-     fill the frame, and "contain" for screenshots, which must not be
-     cropped or the figures get cut off.                                     */
+     `pill` is the button label. `aspect` is the image's own width/height;
+     the frame takes that shape so nothing is ever cropped and nothing sits
+     in dead letterbox space. Portraits are clamped by the carousel so one
+     tall screenshot cannot stretch the whole row.                           */
   caseStudies: {
     title: "Real Results From Real Brands",
     subtitle: "Brands that were stuck, now scaling profitably across every channel.",
@@ -85,19 +86,25 @@ export const site = {
             src: "/assets/case-studies/client-one-person.webp",
             alt: "Founder photo",
             pill: "Founder",
-            fit: "cover",
+            aspect: 1.6,
           },
           {
             src: "/assets/case-studies/client-one-shopify.webp",
             alt: "Shopify revenue on drop day",
             pill: "Shopify",
-            fit: "contain",
+            aspect: 1.811,
           },
           {
             src: "/assets/case-studies/client-one-sms.webp",
             alt: "SMS campaign results",
             pill: "SMS",
-            fit: "contain",
+            aspect: 2.033,
+          },
+          {
+            src: "/assets/case-studies/client-one-message.webp",
+            alt: "Message from the founder",
+            pill: "Message",
+            aspect: 2.157,
           },
         ],
         description:
@@ -115,19 +122,25 @@ export const site = {
             src: "/assets/case-studies/client-two-person.webp",
             alt: "Founder photo",
             pill: "Founder",
-            fit: "cover",
+            aspect: 1.6,
           },
           {
             src: "/assets/case-studies/client-two-shopify.webp",
-            alt: "Shopify revenue after 30 days",
+            alt: "Shopify revenue over 30 days",
             pill: "Shopify",
-            fit: "contain",
+            aspect: 1.969,
           },
           {
             src: "/assets/case-studies/client-two-ads.webp",
             alt: "Ads manager results",
             pill: "Ads",
-            fit: "contain",
+            aspect: 1.978,
+          },
+          {
+            src: "/assets/case-studies/client-two-message.webp",
+            alt: "Message from the founder",
+            pill: "Message",
+            aspect: 2.161,
           },
         ],
         description:
@@ -139,33 +152,39 @@ export const site = {
         ],
       },
       {
-        headline: "$61k In 35 Days",
+        headline: "Step By Step To $74K",
         slides: [
           {
             src: "/assets/case-studies/client-three-person.webp",
             alt: "Founders on shipping day",
             pill: "Founder",
-            fit: "cover",
+            aspect: 1.6,
           },
           {
             src: "/assets/case-studies/client-three-shopify.webp",
-            alt: "Shopify dashboard",
+            alt: "Shopify revenue over 30 days",
             pill: "Shopify",
-            fit: "contain",
+            aspect: 1.959,
           },
           {
             src: "/assets/case-studies/client-three-ads.webp",
             alt: "Ads manager results",
             pill: "Ads",
-            fit: "contain",
+            aspect: 1.957,
+          },
+          {
+            src: "/assets/case-studies/client-three-message.webp",
+            alt: "Message from the founders",
+            pill: "Message",
+            aspect: 0.563,
           },
         ],
         description:
-          "A brand new store with no history. Our creative testing system found the winning angle in week two and we scaled it hard from there.",
+          "Two friends who went all in on this. We cleaned up the ad account, cut the dead spend, and got customers coming in at $16.59 a pop. They've been holding $74K months since.",
         results: [
-          "$74K in the best 7-day window",
-          "5.2x ROAS at scale",
-          "3.2% site-wide conversion rate",
+          "$74,476 in the last 30 days",
+          "$16.59 per customer",
+          "Best campaign running at 20x",
         ],
       },
     ],

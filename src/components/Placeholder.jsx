@@ -29,6 +29,9 @@ export default function Placeholder({
   // "cover" fills the frame and crops; "contain" fits the whole image in,
   // letterboxed. Screenshots need "contain" so no figures are cut off.
   fit = "cover",
+  // Fills any letterbox space with a blurred copy of the image, so a shape
+  // that doesn't match its frame reads as designed rather than broken.
+  backdrop = false,
 }) {
   const [failed, setFailed] = useState(false);
 
@@ -42,6 +45,14 @@ export default function Placeholder({
     >
       {!failed && src ? (
         <>
+          {backdrop && (
+            <img
+              src={src}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full scale-110 object-cover opacity-25 blur-2xl"
+            />
+          )}
           <img
             src={src}
             alt={alt}
@@ -52,7 +63,7 @@ export default function Placeholder({
             className={
               natural
                 ? `block h-auto w-full ${imgClassName}`
-                : `h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} ${imgClassName}`
+                : `relative h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} ${imgClassName}`
             }
           />
           {overlay}

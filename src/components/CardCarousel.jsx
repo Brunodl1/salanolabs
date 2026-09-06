@@ -18,6 +18,10 @@ import Placeholder from "./Placeholder";
  * true, pauses under the pointer, stops permanently as soon as the visitor
  * navigates, and never runs under prefers-reduced-motion.
  */
+// A portrait image gets a frame no taller than this. Without a floor, one
+// 9:16 phone screenshot would stretch the whole row of cards.
+const MIN_ASPECT = 0.75;
+
 export default function CardCarousel({
   slides,
   aspect = "4/3",
@@ -39,6 +43,13 @@ export default function CardCarousel({
     (next) => setIndex(((next % count) + count) % count),
     [count],
   );
+
+  // The frame takes the shape of whichever slide is showing, so each image
+  // fills it instead of floating in dead space. Only a portrait clamped by
+  // MIN_ASPECT is letterboxed, and that gets a blurred backdrop.
+  const slideAspect = slides[index].aspect;
+  const frameAspect = slideAspect ? Math.max(slideAspect, MIN_ASPECT) : aspect;
+  const clamped = Boolean(slideAspect) && slideAspect < MIN_ASPECT;
 
   // Any deliberate navigation stops the auto-advance permanently, so the
   // carousel never yanks a slide away from someone driving it.
@@ -107,7 +118,8 @@ export default function CardCarousel({
     >
       {/* Image viewport */}
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden transition-[aspect-ratio] duration-500 ease-out"
+        style={{ aspectRatio: frameAspect }}
         tabIndex={0}
         onKeyDown={onKeyDown}
         onTouchStart={onTouchStart}
@@ -115,7 +127,7 @@ export default function CardCarousel({
       >
       {/* Slide track */}
       <div
-        className="flex transition-transform duration-500 ease-out"
+        className="flex h-full transition-transform duration-500 ease-out"
         style={{ transform: `translateX(-${index * 100}%)` }}
       >
         {slides.map((slide, i) => (
@@ -125,18 +137,20 @@ export default function CardCarousel({
             onClick={openZoom}
             tabIndex={i === index ? 0 : -1}
             aria-label={`Enlarge ${slide.pill || "image"}`}
-            className="w-full shrink-0 cursor-zoom-in"
+            className="h-full w-full shrink-0 cursor-zoom-in"
             aria-hidden={i !== index}
           >
             <Placeholder
               src={slide.src}
               alt={slide.alt}
               label={slide.pill}
-              aspect={aspect}
-              fit={slide.fit}
-              // Contained screenshots letterbox, so sit them on the deeper
-              // page black rather than the lighter card surface.
-              className={`rounded-none border-0 ${slide.fit === "contain" ? "bg-bg" : ""}`}
+              // The frame already matches the active slide, so every image is
+              // contained: it can never be cropped, whatever its shape.
+              aspect={null}
+              fit="contain"
+              backdrop={clamped}
+              className="h-full rounded-none border-0 bg-bg"
+              imgClassName="h-full w-full"
             />
           </button>
         ))}
