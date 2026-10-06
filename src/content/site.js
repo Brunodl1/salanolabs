@@ -14,7 +14,7 @@
    site to book. BOOKING_URL is the Calendly event the embed loads.
    BOOKING_ANCHOR is where every button on the site scrolls to.
    -------------------------------------------------------------------------- */
-export const BOOKING_URL = "https://calendly.com/wayne-g-tobacco/1-on-1-discovery-call";
+export const BOOKING_URL = "https://calendly.com/brunodl/30min";
 export const BOOKING_ANCHOR = "#book";
 
 export const site = {

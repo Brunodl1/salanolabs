@@ -12,12 +12,14 @@ const WIDGET_SRC = "https://assets.calendly.com/assets/external/widget.js";
  * Colors are passed to Calendly as query params so the iframe renders dark
  * instead of flashing a white panel in the middle of a black page.
  */
-// Calendly needs an explicit height: the widget emits no resize messages,
-// so the frame cannot size itself to the content. These are measured from
-// the booking page's tallest state at each width (830px at 390 wide, 885px
-// at 768), plus headroom for the booking form step. Too small and the
-// widget scrolls inside itself; too large and the card ends in dead space.
-export default function CalendlyEmbed({ url, className = "h-[880px] sm:h-[900px]" }) {
+// With resize on, Calendly posts its content height on every step and the
+// widget sets the container to match, so the calendar never scrolls inside
+// itself. The class height only holds the space until the first message
+// arrives: ~700px is the day picker's height with event details hidden.
+// The min-height matters: while loading, Calendly briefly reports 26px and
+// then 2px, which would collapse the card before it springs back open. The
+// smallest real step is ~600px (the day picker on a phone).
+export default function CalendlyEmbed({ url, className = "h-[700px] min-h-[600px]" }) {
   const container = useRef(null);
   const [failed, setFailed] = useState(false);
 
@@ -26,6 +28,7 @@ export default function CalendlyEmbed({ url, className = "h-[880px] sm:h-[900px]
     if (!el) return;
 
     const themed = new URL(url);
+    themed.searchParams.set("hide_event_type_details", "1");
     themed.searchParams.set("hide_gdpr_banner", "1");
     themed.searchParams.set("background_color", "0d0d10");
     themed.searchParams.set("text_color", "ffffff");
@@ -39,6 +42,7 @@ export default function CalendlyEmbed({ url, className = "h-[880px] sm:h-[900px]
       window.Calendly.initInlineWidget({
         url: themed.toString(),
         parentElement: container.current,
+        resize: true,
       });
     };
 
